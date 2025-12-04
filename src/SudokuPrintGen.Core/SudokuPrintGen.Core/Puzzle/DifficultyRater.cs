@@ -38,10 +38,14 @@ public static class DifficultyRater
         rating.GuessCount = solverResult.GuessCount;
         rating.PropagationCycles = solverResult.PropagationCycles;
         
-        // Calculate composite score
+        // Detect solving techniques using TechniqueDetector
+        rating.DetectedTechniques = TechniqueDetector.DetectAllTechniques(puzzle);
+        rating.TechniqueScore = TechniqueDetector.CalculateTechniqueScore(rating.DetectedTechniques);
+        
+        // Calculate composite score (now includes technique score)
         rating.CalculateCompositeScore();
         
-        // Analyze solving techniques
+        // Analyze solving techniques (legacy string format for backward compatibility)
         var workingBoard = puzzle.Clone();
         rating.RequiredTechniques = AnalyzeSolvingTechniques(workingBoard, solver, rating);
         
@@ -85,19 +89,37 @@ public static class DifficultyRater
     private static List<string> AnalyzeSolvingTechniques(Board board, ISolver solver, DifficultyRating rating)
     {
         var techniques = new List<string>();
-        var workingBoard = board.Clone();
         
-        // Detect naked singles
-        if (DetectNakedSingles(workingBoard))
-        {
+        // Use detected techniques to build legacy string list
+        var detectedTypes = rating.DetectedTechniques
+            .Select(t => t.Technique)
+            .Distinct()
+            .ToList();
+        
+        // Map detected techniques to legacy string names
+        if (detectedTypes.Contains(SolvingTechnique.NakedSingle))
             techniques.Add("NakedSingles");
-        }
         
-        // Detect hidden singles
-        if (DetectHiddenSingles(workingBoard))
-        {
+        if (detectedTypes.Contains(SolvingTechnique.HiddenSingle))
             techniques.Add("HiddenSingles");
-        }
+        
+        if (detectedTypes.Contains(SolvingTechnique.NakedPair))
+            techniques.Add("NakedPairs");
+        
+        if (detectedTypes.Contains(SolvingTechnique.HiddenPair))
+            techniques.Add("HiddenPairs");
+        
+        if (detectedTypes.Contains(SolvingTechnique.XWing))
+            techniques.Add("X-Wing");
+        
+        if (detectedTypes.Contains(SolvingTechnique.Swordfish))
+            techniques.Add("Swordfish");
+        
+        if (detectedTypes.Contains(SolvingTechnique.XYWing))
+            techniques.Add("XY-Wing");
+        
+        if (detectedTypes.Contains(SolvingTechnique.XYZWing))
+            techniques.Add("XYZ-Wing");
         
         // If we had guesses, advanced techniques are required
         if (rating.GuessCount > 0)
@@ -132,57 +154,7 @@ public static class DifficultyRater
     /// </summary>
     public static bool DetectNakedSingles(Board board)
     {
-        var size = board.Size;
-        Span<uint> rowCandidates = stackalloc uint[size];
-        Span<uint> colCandidates = stackalloc uint[size];
-        Span<uint> boxCandidates = stackalloc uint[size];
-        
-        // Initialize candidate sets
-        const uint allCandidates = 0x1FF;
-        for (int i = 0; i < size; i++)
-        {
-            rowCandidates[i] = allCandidates;
-            colCandidates[i] = allCandidates;
-            boxCandidates[i] = allCandidates;
-        }
-        
-        // Process given clues
-        for (int row = 0; row < size; row++)
-        {
-            for (int col = 0; col < size; col++)
-            {
-                var value = board[row, col];
-                if (value != 0)
-                {
-                    var mask = ~(1u << (value - 1));
-                    rowCandidates[row] &= mask;
-                    colCandidates[col] &= mask;
-                    var boxIndex = board.GetBoxIndex(row, col);
-                    boxCandidates[boxIndex] &= mask;
-                }
-            }
-        }
-        
-        // Check for cells with exactly one candidate
-        for (int row = 0; row < size; row++)
-        {
-            for (int col = 0; col < size; col++)
-            {
-                if (board[row, col] == 0)
-                {
-                    var boxIndex = board.GetBoxIndex(row, col);
-                    var candidates = rowCandidates[row] & colCandidates[col] & boxCandidates[boxIndex];
-                    
-                    // Count bits - if exactly 1 candidate, it's a naked single
-                    if (System.Numerics.BitOperations.PopCount(candidates) == 1)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        return false;
+        return TechniqueDetector.HasNakedSingles(board);
     }
     
     /// <summary>
@@ -191,164 +163,7 @@ public static class DifficultyRater
     /// </summary>
     public static bool DetectHiddenSingles(Board board)
     {
-        var size = board.Size;
-        
-        // Check rows
-        for (int row = 0; row < size; row++)
-        {
-            if (HasHiddenSingleInRow(board, row))
-                return true;
-        }
-        
-        // Check columns
-        for (int col = 0; col < size; col++)
-        {
-            if (HasHiddenSingleInColumn(board, col))
-                return true;
-        }
-        
-        // Check boxes
-        var boxCount = size;
-        for (int box = 0; box < boxCount; box++)
-        {
-            if (HasHiddenSingleInBox(board, box))
-                return true;
-        }
-        
-        return false;
-    }
-    
-    private static bool HasHiddenSingleInRow(Board board, int row)
-    {
-        var size = board.Size;
-        
-        // For each digit
-        for (int digit = 1; digit <= size; digit++)
-        {
-            // Check if digit is already placed in row
-            bool placed = false;
-            for (int col = 0; col < size; col++)
-            {
-                if (board[row, col] == digit)
-                {
-                    placed = true;
-                    break;
-                }
-            }
-            
-            if (placed) continue;
-            
-            // Count cells where digit can be placed
-            int possibleCount = 0;
-            for (int col = 0; col < size; col++)
-            {
-                if (board[row, col] == 0 && CanPlaceDigit(board, row, col, digit))
-                {
-                    possibleCount++;
-                    if (possibleCount > 1) break;
-                }
-            }
-            
-            if (possibleCount == 1)
-                return true;
-        }
-        
-        return false;
-    }
-    
-    private static bool HasHiddenSingleInColumn(Board board, int col)
-    {
-        var size = board.Size;
-        
-        // For each digit
-        for (int digit = 1; digit <= size; digit++)
-        {
-            // Check if digit is already placed in column
-            bool placed = false;
-            for (int row = 0; row < size; row++)
-            {
-                if (board[row, col] == digit)
-                {
-                    placed = true;
-                    break;
-                }
-            }
-            
-            if (placed) continue;
-            
-            // Count cells where digit can be placed
-            int possibleCount = 0;
-            for (int row = 0; row < size; row++)
-            {
-                if (board[row, col] == 0 && CanPlaceDigit(board, row, col, digit))
-                {
-                    possibleCount++;
-                    if (possibleCount > 1) break;
-                }
-            }
-            
-            if (possibleCount == 1)
-                return true;
-        }
-        
-        return false;
-    }
-    
-    private static bool HasHiddenSingleInBox(Board board, int boxIndex)
-    {
-        var size = board.Size;
-        var boxCells = board.GetBoxCells(boxIndex).ToList();
-        
-        // For each digit
-        for (int digit = 1; digit <= size; digit++)
-        {
-            // Check if digit is already placed in box
-            bool placed = boxCells.Any(c => c.value == digit);
-            if (placed) continue;
-            
-            // Count cells where digit can be placed
-            int possibleCount = 0;
-            foreach (var (row, col, value) in boxCells)
-            {
-                if (value == 0 && CanPlaceDigit(board, row, col, digit))
-                {
-                    possibleCount++;
-                    if (possibleCount > 1) break;
-                }
-            }
-            
-            if (possibleCount == 1)
-                return true;
-        }
-        
-        return false;
-    }
-    
-    private static bool CanPlaceDigit(Board board, int row, int col, int digit)
-    {
-        // Check row
-        for (int c = 0; c < board.Size; c++)
-        {
-            if (board[row, c] == digit)
-                return false;
-        }
-        
-        // Check column
-        for (int r = 0; r < board.Size; r++)
-        {
-            if (board[r, col] == digit)
-                return false;
-        }
-        
-        // Check box
-        var boxIndex = board.GetBoxIndex(row, col);
-        foreach (var (r, c, v) in board.GetBoxCells(boxIndex))
-        {
-            if (v == digit)
-                return false;
-        }
-        
-        return true;
+        return TechniqueDetector.HasHiddenSingles(board);
     }
     
     private static Difficulty EstimateDifficultyFromMetrics(DifficultyRating rating)
@@ -409,9 +224,27 @@ public class DifficultyRating
     public int EmptyCells { get; set; }
     
     /// <summary>
-    /// List of solving techniques required/detected.
+    /// List of solving techniques required/detected (legacy string format).
     /// </summary>
     public List<string> RequiredTechniques { get; set; } = new();
+    
+    /// <summary>
+    /// Detailed list of detected technique instances.
+    /// </summary>
+    public List<TechniqueInstance> DetectedTechniques { get; set; } = new();
+    
+    /// <summary>
+    /// The hardest technique detected in the puzzle.
+    /// </summary>
+    public SolvingTechnique? HardestTechnique => 
+        DetectedTechniques.Count > 0 
+            ? DetectedTechniques.MaxBy(t => (int)t.Technique)?.Technique 
+            : null;
+    
+    /// <summary>
+    /// Score based on detected solving techniques.
+    /// </summary>
+    public double TechniqueScore { get; set; }
     
     /// <summary>
     /// Estimated difficulty level.
@@ -475,22 +308,24 @@ public class DifficultyRating
     /// </summary>
     public void CalculateCompositeScore()
     {
-        // Weighted formula:
-        // - Iteration count: 50% (primary metric)
-        // - Max backtrack depth: 20%
-        // - Guess count: 20%
+        // Updated weighted formula incorporating technique scoring:
+        // - Iteration count: 40% (primary metric, reduced from 50%)
+        // - Technique score: 20% (new)
+        // - Max backtrack depth: 15%
+        // - Guess count: 15%
         // - Clue ratio: 10% (fewer clues = harder)
         
-        double iterationComponent = IterationCount * 0.50;
-        double depthComponent = MaxBacktrackDepth * 2.0 * 0.20;
-        double guessComponent = GuessCount * 3.0 * 0.20;
+        double iterationComponent = IterationCount * 0.40;
+        double techniqueComponent = TechniqueScore * 2.0 * 0.20;
+        double depthComponent = MaxBacktrackDepth * 2.0 * 0.15;
+        double guessComponent = GuessCount * 3.0 * 0.15;
         
         // Clue ratio component (inverted - fewer clues = higher score)
         double totalCells = ClueCount + EmptyCells;
         double clueRatio = totalCells > 0 ? ClueCount / totalCells : 0.5;
         double clueComponent = (1.0 - clueRatio) * 20.0 * 0.10;
         
-        CompositeScore = iterationComponent + depthComponent + guessComponent + clueComponent;
+        CompositeScore = iterationComponent + techniqueComponent + depthComponent + guessComponent + clueComponent;
     }
     
     /// <summary>

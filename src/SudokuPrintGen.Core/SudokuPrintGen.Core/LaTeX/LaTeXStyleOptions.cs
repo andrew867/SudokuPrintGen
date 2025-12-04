@@ -29,7 +29,12 @@ public class LaTeXStyleOptions
     public string Author { get; set; } = "SudokuPrintGen";
     public bool IncludeSolution { get; set; } = false;
     public bool IncludeSolvingSheet { get; set; } = false;
-    public int PuzzlesPerPage { get; set; } = 1; // 1, 2, 4, 6, or 9 puzzles per page
+    /// <summary>
+    /// Number of puzzles per page for multi-puzzle documents.
+    /// Supported values: 6 (2x3, larger puzzles) or 8 (2x4, more puzzles).
+    /// Default is 6 for ~29% larger puzzles than 8-per-page layout.
+    /// </summary>
+    public int PuzzlesPerPage { get; set; } = 6;
 }
 
 /// <summary>

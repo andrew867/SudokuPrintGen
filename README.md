@@ -14,7 +14,7 @@ Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-qual
 - **Puzzle variants**: Classic, Diagonal, Color-Constrained, Kikagaku
 - **Configurable board sizes**: 4×4, 6×6, 9×9, 12×12, 16×16
 - **Reproducible generation** with seed support
-- **Difficulty rating algorithm** based on solving techniques
+- **Advanced difficulty analysis** with 8 solving technique detectors
 - **Symmetry detection** (rotational, horizontal, vertical, diagonal)
 
 ### 📄 Multiple Output Formats
@@ -148,7 +148,7 @@ SudokuPrintGen/
 │   │   └── Output/              # Multi-format writers, PDF compiler
 │   └── SudokuPrintGen.CLI/      # Command-line interface
 ├── tests/
-│   └── SudokuPrintGen.Tests/    # 40 unit tests
+│   └── SudokuPrintGen.Tests/    # 143 unit tests
 ├── fonts/                        # Bundled Futura fonts
 ├── templates/latex/              # LaTeX templates
 ├── build/                        # Build scripts (PowerShell & Bash)
@@ -168,7 +168,8 @@ SudokuPrintGen/
 | `DpllSolver.cs` | Davis-Putnam-Logemann-Loveland algorithm with metrics |
 | `SolverResult.cs` | Solver metrics (iterations, depth, guesses) |
 | `SimdConstraintPropagator.cs` | AVX2/SSE hardware-accelerated operations |
-| `DifficultyRater.cs` | Metrics-based difficulty analysis |
+| `TechniqueDetector.cs` | Advanced solving technique detection (8 techniques) |
+| `DifficultyRater.cs` | Metrics and technique-based difficulty analysis |
 | `DifficultyTargets.cs` | Iteration ranges and score thresholds |
 | `PuzzleRefiner.cs` | Iterative difficulty refinement |
 | `ClueAnalyzer.cs` | Strategic clue management |
@@ -247,14 +248,31 @@ Medium        |     5 |     17.4 |    3.21 |      80.0% |     14.2
 
 See [docs/DifficultySystem.md](docs/DifficultySystem.md) for complete documentation.
 
-### Difficulty Rating
-Puzzles are automatically analyzed to determine:
-- Solver iteration count (primary metric)
+### Difficulty Rating & Technique Detection
+
+Puzzles are automatically analyzed using solver metrics and technique detection:
+
+**Solver Metrics:**
+- Iteration count (primary metric)
 - Max backtrack depth and guess count
 - Clue count and empty cell ratio
-- Required solving techniques (Naked Singles, Hidden Singles, Advanced)
-- Composite difficulty score
-- Estimated difficulty level
+
+**Detected Solving Techniques (ordered by difficulty):**
+
+| Technique | Weight | Description |
+|-----------|--------|-------------|
+| Naked Single | 1 | Cell with only one candidate |
+| Hidden Single | 2 | Digit can only go in one cell in a unit |
+| Naked Pair | 4 | Two cells with identical 2-candidate sets |
+| Hidden Pair | 5 | Two digits appearing in exactly 2 cells |
+| X-Wing | 8 | Fish pattern across 2 rows/columns |
+| XY-Wing | 10 | Three-cell chain elimination pattern |
+| Swordfish | 12 | Fish pattern across 3 rows/columns |
+| XYZ-Wing | 14 | Three-cell chain with pivot having 3 candidates |
+
+**Composite Scoring:**
+- 40% solver iterations + 20% technique score + 15% backtrack depth + 15% guesses + 10% clue ratio
+- Technique score = hardest technique weight + bonus for variety
 
 ### Symmetry Detection
 The generator detects and reports:
@@ -292,6 +310,8 @@ Test coverage includes:
 - Symmetry detection
 - PDF compilation
 - Difficulty distribution for mixed batches
+- Technique detection (all 8 techniques)
+- Technique scoring integration
 
 ---
 

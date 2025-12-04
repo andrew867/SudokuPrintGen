@@ -24,7 +24,7 @@ if (args.Length == 0 || args[0] != "generate")
     Console.WriteLine("  --seed <int>              Random seed for reproducibility");
     Console.WriteLine("  --solution                Include solution in output");
     Console.WriteLine("  --solving-sheet           Include solving sheet (empty grid)");
-    Console.WriteLine("  --puzzles-per-page <int>  Number of puzzles per page (1, 2, 4, 6, or 9) [default: 1]");
+    Console.WriteLine("  --puzzles-per-page <int>  Puzzles per page: 6 (larger, 2x3) or 8 (2x4) [default: 6]");
     Console.WriteLine("  --config <path>           Configuration file (JSON)");
     Console.WriteLine();
     Console.WriteLine("Difficulty Targeting Options:");
@@ -75,7 +75,7 @@ var author = GetArgValueString(args, new[] { "--author" }, config?.Author);
 var seedStr = GetArgValueString(args, new[] { "--seed" }, config?.Seed?.ToString());
 var includeSolution = HasArg(args, new[] { "--solution", "--include-solution" }) || (config?.IncludeSolution ?? false);
 var includeSolvingSheet = HasArg(args, new[] { "--solving-sheet" }) || (config?.IncludeSolvingSheet ?? false);
-var puzzlesPerPage = GetArgValue(args, new[] { "--puzzles-per-page" }, 1);
+var puzzlesPerPage = GetArgValue(args, new[] { "--puzzles-per-page" }, 6);
 
 // Difficulty refinement options
 var useIterativeRefinement = HasArg(args, new[] { "--refine-difficulty", "--refine", "--iterative" });

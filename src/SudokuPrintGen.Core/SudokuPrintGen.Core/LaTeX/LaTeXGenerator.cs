@@ -12,14 +12,18 @@ public class LaTeXGenerator
     private readonly LaTeXStyleOptions _options;
     
     // TikZ grid dimensions (in cm for precision)
-    // For 8 puzzles per page: 2 columns x 4 rows
-    // Letter paper usable area with margins: ~17.8cm x 25.4cm
-    // Each puzzle area: ~8.9cm wide x ~6cm tall (including footer)
-    // Grid size: 5.4cm x 5.4cm (cells are 0.6cm = 6mm each)
-    private const double CellSizeCm = 0.6;
-    private const double GridSizeCm = CellSizeCm * 9; // 5.4cm
+    // Letter paper usable area with 0.2in top/bottom, 0.25in left/right: ~20.3cm x 26.9cm
+    // 6 puzzles per page (2x3): cells 0.90cm = 9mm, grid 8.1cm (~29% larger than 8-per-page)
+    // 8 puzzles per page (2x4): cells 0.70cm = 7mm, grid 6.3cm
+    private const double CellSizeCm6PerPage = 0.90;  // For 2x3 layout
+    private const double CellSizeCm8PerPage = 0.70;  // For 2x4 layout
     private const double ThinLineWidth = 0.3; // pt
     private const double ThickLineWidth = 1.2; // pt
+    
+    /// <summary>
+    /// Gets the cell size based on puzzles per page setting.
+    /// </summary>
+    private double GetCellSizeCm() => _options.PuzzlesPerPage <= 6 ? CellSizeCm6PerPage : CellSizeCm8PerPage;
     
     public LaTeXGenerator(LaTeXStyleOptions? options = null)
     {
@@ -103,12 +107,12 @@ public class LaTeXGenerator
     
     /// <summary>
     /// Generates LaTeX code for multiple puzzles in one document.
-    /// Layout: 2 columns x 4 rows = 8 puzzles per page maximum.
+    /// Layout: 2 columns x N rows (6 per page = 2x3, 8 per page = 2x4).
     /// </summary>
     public string GenerateMultiplePuzzles(List<(Board puzzle, Board? solution, GeneratedPuzzle? metadata)> puzzles)
     {
         var sb = new StringBuilder();
-        const int maxPuzzlesPerPage = 8;
+        int maxPuzzlesPerPage = _options.PuzzlesPerPage <= 6 ? 6 : 8;
         const int puzzlesPerRow = 2;
         
         // Document header with TikZ
@@ -139,8 +143,8 @@ public class LaTeXGenerator
                 bool hasLeft = leftIdx < puzzles.Count && leftIdx < puzzleIndex + puzzlesOnThisPage;
                 bool hasRight = rightIdx < puzzles.Count && rightIdx < puzzleIndex + puzzlesOnThisPage;
                 
-                // Center the row of puzzles
-                sb.AppendLine(@"\noindent\begin{center}");
+                // Center the row of puzzles using \centering (no extra vertical space like \begin{center})
+                sb.AppendLine(@"\noindent\hfill");
                 sb.AppendLine(@"\begin{minipage}[t]{0.48\textwidth}");
                 sb.AppendLine(@"\centering");
                 if (hasLeft)
@@ -158,12 +162,12 @@ public class LaTeXGenerator
                     sb.Append(GenerateTikZGridWithFooter(puzzle, metadata));
                 }
                 sb.AppendLine(@"\end{minipage}");
-                sb.AppendLine(@"\end{center}");
+                sb.AppendLine(@"\hfill\par");
                 
-                // Vertical spacing between rows (but not after last row)
+                // Minimal vertical spacing between rows (but not after last row)
                 if (row < rowsNeeded - 1)
                 {
-                    sb.AppendLine(@"\vspace{0.2cm}");
+                    sb.AppendLine(@"\vspace{0.5cm}");
                 }
             }
             
@@ -187,10 +191,15 @@ public class LaTeXGenerator
         sb.AppendLine(@"\usepackage{tikz}");
         sb.AppendLine(@"\usepackage{geometry}");
         
-        // Optimized margins for letter paper - tighter to fit 8 puzzles
+        // Minimal margins for letter paper - maximizes puzzle size for 8 per page
+        // 0.2in is near the printable limit for most printers
         sb.AppendLine(@"\geometry{letterpaper,");
-        sb.AppendLine(@"          left=0.5in, right=0.5in,");
-        sb.AppendLine(@"          top=0.4in, bottom=0.4in}");
+        sb.AppendLine(@"          left=0.25in, right=0.25in,");
+        sb.AppendLine(@"          top=0.2in, bottom=0.2in}");
+        
+        // Eliminate default paragraph spacing
+        sb.AppendLine(@"\setlength{\parskip}{0pt}");
+        sb.AppendLine(@"\setlength{\parsep}{0pt}");
         
         // XeLaTeX font support
         if (_options.Engine == LaTeXEngine.XeLaTeX)
@@ -291,7 +300,7 @@ public class LaTeXGenerator
     private string GenerateTikZGrid(Board puzzle, GeneratedPuzzle? metadata, double scale)
     {
         var sb = new StringBuilder();
-        double cellSize = CellSizeCm * scale;
+        double cellSize = GetCellSizeCm() * scale;
         double gridSize = cellSize * 9;
         
         sb.AppendLine($@"\begin{{tikzpicture}}[scale=1]");
@@ -352,8 +361,8 @@ public class LaTeXGenerator
                     // Calculate center of cell (TikZ y-axis is inverted relative to row)
                     double x = (col + 0.5) * cellSize;
                     double y = (8 - row + 0.5) * cellSize;
-                    // Use \large for font size; skip \bfseries if using bundled bold font
-                    var fontStyle = _options.UseBundledFont ? @"\large" : @"\large\bfseries";
+                    // Use \LARGE for font size (~2x larger); skip \bfseries if using bundled bold font
+                    var fontStyle = _options.UseBundledFont ? @"\LARGE" : @"\LARGE\bfseries";
                     sb.AppendLine($@"  \node[font={fontStyle}] at ({x:F2}cm,{y:F2}cm) {{{value}}};");
                 }
             }
@@ -373,10 +382,10 @@ public class LaTeXGenerator
         // Generate the grid
         sb.Append(GenerateTikZGrid(puzzle, metadata, 1.0));
         
-        // Add footer
+        // Add footer with negative space to pull it tight against the puzzle
         if (metadata != null)
         {
-            sb.AppendLine(@"\par\vspace{0.1cm}");
+            sb.AppendLine(@"\par\vspace{-0.15cm}");
             sb.AppendLine(@"{\tiny");
             var footerParts = new List<string>();
             
@@ -405,7 +414,7 @@ public class LaTeXGenerator
     private string GenerateEmptyTikZGrid(int size, double scale)
     {
         var sb = new StringBuilder();
-        double cellSize = CellSizeCm * scale;
+        double cellSize = GetCellSizeCm() * scale;
         double gridSize = cellSize * size;
         double boxSize = cellSize * 3;
         

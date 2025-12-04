@@ -59,11 +59,11 @@
 - [ ] Export difficulty statistics to CSV/JSON
 
 ### Advanced Difficulty Analysis
-- [ ] Naked Pairs detection (framework exists in `DifficultyRater`)
-- [ ] Hidden Pairs detection
-- [ ] X-Wing and Swordfish technique detection
-- [ ] Chain-based technique detection (XY-Wing, XYZ-Wing)
-- [ ] Difficulty rating based on specific techniques required (not just iterations)
+- [x] Naked Pairs detection (`TechniqueDetector.DetectNakedPairs`)
+- [x] Hidden Pairs detection (`TechniqueDetector.DetectHiddenPairs`)
+- [x] X-Wing and Swordfish technique detection (`TechniqueDetector.DetectXWing`, `DetectSwordfish`)
+- [x] Chain-based technique detection (XY-Wing, XYZ-Wing) (`TechniqueDetector.DetectXYWing`, `DetectXYZWing`)
+- [x] Difficulty rating based on specific techniques required (`SolvingTechnique` enum, technique-weighted scoring)
 
 ### LaTeX Enhancements
 - [ ] More styling options (grid line weights, cell padding, colors via CSS-like system)
@@ -97,7 +97,7 @@
 2. **Large Boards**: 12×12 and 16×16 boards work but difficulty targeting may need tuning.
 3. **Template System**: LaTeX templates are mostly inline. Template file loading exists but isn't fully integrated.
 4. **Refinement Performance**: Iterative refinement adds overhead; very hard puzzles may require many iterations.
-5. **Advanced Techniques**: Difficulty rating detects basic techniques (naked/hidden singles) but not advanced patterns.
+5. **Advanced Techniques**: Difficulty rating now detects advanced patterns (Naked/Hidden Pairs, X-Wing, Swordfish, XY-Wing, XYZ-Wing) via `TechniqueDetector`.
 
 ## Performance Notes
 

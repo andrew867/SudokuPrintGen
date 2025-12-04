@@ -182,10 +182,31 @@ Console.WriteLine(generator.GetStatisticsReport());
 ### Composite Score Calculation
 
 ```csharp
-score = (iterationCount * 0.50) +
-        (maxBacktrackDepth * 2.0 * 0.20) +
-        (guessCount * 3.0 * 0.20) +
+score = (iterationCount * 0.40) +
+        (techniqueScore * 2.0 * 0.20) +
+        (maxBacktrackDepth * 2.0 * 0.15) +
+        (guessCount * 3.0 * 0.15) +
         ((1.0 - clueRatio) * 20.0 * 0.10)
+```
+
+### Technique Detection
+
+The system detects and weighs solving techniques using `TechniqueDetector`:
+
+| Technique | Weight | Description |
+|-----------|--------|-------------|
+| Naked Single | 1 | Cell with only one candidate |
+| Hidden Single | 2 | Digit can only go in one cell in a unit |
+| Naked Pair | 4 | Two cells with identical 2-candidate sets |
+| Hidden Pair | 5 | Two digits appearing in exactly 2 cells |
+| X-Wing | 8 | Digit in exactly 2 cells in 2 rows sharing 2 columns |
+| XY-Wing | 10 | Three-cell chain pattern |
+| Swordfish | 12 | Extension of X-Wing to 3 rows/columns |
+| XYZ-Wing | 14 | Three-cell chain with pivot having 3 candidates |
+
+The technique score is calculated as:
+```csharp
+techniqueScore = maxTechniqueWeight + (uniqueTechniqueCount - 1) * 0.5
 ```
 
 ### Clue Distribution Analysis
