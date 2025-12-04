@@ -100,3 +100,4 @@ D:\vscode\Sudoku\SudokuPrintGen\tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\
 D:\vscode\Sudoku\SudokuPrintGen\tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\obj\Debug\net8.0\SudokuPrintGen.Tests.pdb
 D:\vscode\Sudoku\SudokuPrintGen\tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\obj\Debug\net8.0\SudokuPrintGen.Tests.genruntimeconfig.cache
 D:\vscode\Sudoku\SudokuPrintGen\tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\obj\Debug\net8.0\ref\SudokuPrintGen.Tests.dll
+D:\vscode\Sudoku\SudokuPrintGen\tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\obj\Debug\net8.0\SudokuPrintGen.Tests.sourcelink.json

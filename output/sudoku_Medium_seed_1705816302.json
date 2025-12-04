@@ -1,0 +1,129 @@
+{
+  "puzzle": [
+    [
+      4,
+      7,
+      9,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      3,
+      6,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7
+    ],
+    [
+      2,
+      0,
+      0,
+      7,
+      0,
+      6,
+      0,
+      0,
+      5
+    ],
+    [
+      0,
+      0,
+      0,
+      5,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8
+    ],
+    [
+      0,
+      0,
+      1,
+      9,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      2,
+      0,
+      5,
+      8,
+      0,
+      0,
+      0
+    ]
+  ],
+  "difficulty": "Medium",
+  "variant": "Classic",
+  "seed": 1705816302,
+  "puzzleNumber": 52,
+  "generatedAt": "2025-12-04T20:02:03Z",
+  "solverAlgorithm": "DPLL",
+  "clueCount": 27,
+  "difficultyRating": {
+    "clueCount": 27,
+    "emptyCells": 54,
+    "requiredTechniques": [
+      "NakedSingles",
+      "HiddenSingles",
+      "Guessing",
+      "AdvancedBacktracking"
+    ],
+    "estimatedDifficulty": "Medium"
+  },
+  "symmetry": {
+    "hasRotationalSymmetry": false,
+    "hasHorizontalReflection": false,
+    "hasVerticalReflection": false,
+    "hasDiagonalSymmetry": false,
+    "symmetryScore": 0,
+    "symmetryTypes": []
+  }
+}

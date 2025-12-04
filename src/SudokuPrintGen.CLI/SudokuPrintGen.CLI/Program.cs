@@ -12,20 +12,30 @@ if (args.Length == 0 || args[0] != "generate")
     Console.WriteLine("  --size, -s <int>          Board size (4, 6, 9, 12, 16) [default: 9]");
     Console.WriteLine("  --difficulty, -d <level>  Easy|Medium|Hard|Expert|Evil [default: Medium]");
     Console.WriteLine("  --variant, -v <type>      Classic|Diagonal|ColorConstrained|Kikagaku [default: Classic]");
-    Console.WriteLine("  --count, -c <int>          Number of puzzles to generate [default: 1]");
+    Console.WriteLine("  --count, -c <int>         Number of puzzles to generate [default: 1]");
     Console.WriteLine("  --output, -o <path>       Output directory [default: .]");
-    Console.WriteLine("  --format, -f <type>        Tex|Txt|Pdf|Json|All [default: All]");
-    Console.WriteLine("  --engine <engine>          pdflatex|xelatex [default: xelatex]");
-    Console.WriteLine("  --font <path>              Path to TTF font file (xelatex only)");
-    Console.WriteLine("  --system-font <name>       Use installed system font by name (xelatex only)");
-    Console.WriteLine("  --no-bundled-font          Don't use bundled Futura Bold BT font");
+    Console.WriteLine("  --format, -f <type>       Tex|Txt|Pdf|Json|All [default: All]");
+    Console.WriteLine("  --engine <engine>         pdflatex|xelatex [default: xelatex]");
+    Console.WriteLine("  --font <path>             Path to TTF font file (xelatex only)");
+    Console.WriteLine("  --system-font <name>      Use installed system font by name (xelatex only)");
+    Console.WriteLine("  --no-bundled-font         Don't use bundled Futura Bold BT font");
     Console.WriteLine("  --title <text>            Puzzle title");
-    Console.WriteLine("  --author <text>            Author name");
-    Console.WriteLine("  --seed <int>               Random seed for reproducibility");
-    Console.WriteLine("  --solution                 Include solution in output");
-    Console.WriteLine("  --solving-sheet            Include solving sheet (empty grid)");
-    Console.WriteLine("  --puzzles-per-page <int>   Number of puzzles per page (1, 2, 4, 6, or 9) [default: 1]");
-    Console.WriteLine("  --config <path>            Configuration file (JSON)");
+    Console.WriteLine("  --author <text>           Author name");
+    Console.WriteLine("  --seed <int>              Random seed for reproducibility");
+    Console.WriteLine("  --solution                Include solution in output");
+    Console.WriteLine("  --solving-sheet           Include solving sheet (empty grid)");
+    Console.WriteLine("  --puzzles-per-page <int>  Number of puzzles per page (1, 2, 4, 6, or 9) [default: 1]");
+    Console.WriteLine("  --config <path>           Configuration file (JSON)");
+    Console.WriteLine();
+    Console.WriteLine("Difficulty Targeting Options:");
+    Console.WriteLine("  --refine-difficulty       Use iterative refinement for accurate difficulty targeting");
+    Console.WriteLine("  --show-statistics         Display generation statistics after completion");
+    Console.WriteLine("  --verbose                 Show detailed progress during generation");
+    Console.WriteLine();
+    Console.WriteLine("Examples:");
+    Console.WriteLine("  sudoku-printgen generate -d Easy,Medium -c 8");
+    Console.WriteLine("  sudoku-printgen generate -d Hard --refine-difficulty --show-statistics");
+    Console.WriteLine("  sudoku-printgen generate -d Expert -c 4 --solution");
     return 1;
 }
 
@@ -67,6 +77,11 @@ var includeSolution = HasArg(args, new[] { "--solution", "--include-solution" })
 var includeSolvingSheet = HasArg(args, new[] { "--solving-sheet" }) || (config?.IncludeSolvingSheet ?? false);
 var puzzlesPerPage = GetArgValue(args, new[] { "--puzzles-per-page" }, 1);
 
+// Difficulty refinement options
+var useIterativeRefinement = HasArg(args, new[] { "--refine-difficulty", "--refine", "--iterative" });
+var showStatistics = HasArg(args, new[] { "--show-statistics", "--stats", "--statistics" });
+var verbose = HasArg(args, new[] { "--verbose", "-V" });
+
 // Parse enums (for backward compatibility, but we'll use distributedDifficulties)
 var defaultDifficulty = difficulties.Count > 0 ? difficulties[0] : Difficulty.Medium;
 
@@ -90,8 +105,13 @@ else if (seedStr == null)
 // Determine box dimensions
 var (boxRows, boxCols) = GetBoxDimensions(size);
 
-// Create generator
+// Create generator with statistics tracking
 var generator = new PuzzleGenerator(seed: seed);
+
+if (useIterativeRefinement)
+{
+    Console.WriteLine("Using iterative difficulty refinement for accurate targeting...");
+}
 
 // Create style options
 var styleOptions = new LaTeXStyleOptions
@@ -118,6 +138,8 @@ var allPuzzles = new List<GeneratedPuzzle>();
 var generationTimestamp = DateTime.UtcNow;
 var baseSeed = seed ?? new Random().Next();
 
+Console.WriteLine($"\nGenerating {count} puzzle(s)...\n");
+
 for (int i = 0; i < count; i++)
 {
     // Use different seed for each puzzle (increment base seed)
@@ -127,10 +149,33 @@ for (int i = 0; i < count; i++)
     // Use distributed difficulty for this puzzle
     var puzzleDifficulty = distributedDifficulties[i];
     
-    var generatedPuzzle = puzzleGenerator.Generate(puzzleDifficulty, variant, size, boxRows, boxCols);
+    if (verbose)
+    {
+        Console.WriteLine($"Generating puzzle {i + 1}/{count} (Difficulty: {puzzleDifficulty})...");
+    }
+    
+    var generatedPuzzle = puzzleGenerator.Generate(
+        puzzleDifficulty, 
+        variant, 
+        size, 
+        boxRows, 
+        boxCols, 
+        useIterativeRefinement: useIterativeRefinement
+    );
     generatedPuzzle.PuzzleNumber = i + 1;
     generatedPuzzle.GeneratedAt = generationTimestamp; // Use same timestamp for all puzzles in batch
+    
+    // Add to main generator's statistics
+    generator.Statistics.AddPuzzle(generatedPuzzle);
+    
     allPuzzles.Add(generatedPuzzle);
+    
+    if (verbose && generatedPuzzle.DifficultyRating != null)
+    {
+        var rating = generatedPuzzle.DifficultyRating;
+        Console.WriteLine($"  Iterations: {rating.IterationCount}, Score: {rating.CompositeScore:F1}, " +
+                          $"Estimated: {rating.EstimatedDifficulty}, Match: {(rating.IsInTargetRange ? "Yes" : "No")}");
+    }
 }
 
 // Normalize format to handle various inputs (case-insensitive, aliases)
@@ -224,6 +269,14 @@ if (wantsTex || wantsPdf)
 }
 
 Console.WriteLine($"\nGenerated {count} puzzle(s) in {outputDir}");
+
+// Show statistics if requested
+if (showStatistics)
+{
+    Console.WriteLine();
+    Console.WriteLine(generator.GetStatisticsReport());
+}
+
 return 0;
 
 static (int boxRows, int boxCols) GetBoxDimensions(int size)

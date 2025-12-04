@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SudokuPrintGen.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+450b361a92de71dd34f5d1e4c08a459bfd332b96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83882514f78d78b41ffc3e9bdda4c3e2c1490e7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SudokuPrintGen.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SudokuPrintGen.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,42 +1,58 @@
 using SudokuPrintGen.Core.Puzzle;
-using System.Collections;
 
 namespace SudokuPrintGen.Core.Solver;
 
 /// <summary>
-/// DPLL-based Sudoku solver with constraint propagation.
+/// DPLL-based Sudoku solver with constraint propagation and metrics tracking.
 /// </summary>
 public class DpllSolver : ISolver
 {
     private int _solutionCount;
     private int _solutionLimit;
     private Board? _firstSolution;
+    private SolverMetrics _metrics = new();
     
     public Board? Solve(Board puzzle)
+    {
+        var result = SolveWithMetrics(puzzle);
+        return result.Solution;
+    }
+    
+    public SolverResult SolveWithMetrics(Board puzzle)
     {
         _solutionCount = 0;
         _solutionLimit = 1;
         _firstSolution = null;
+        _metrics.Reset();
         
         var workingBoard = puzzle.Clone();
-        if (SolveInternal(workingBoard))
+        SolveInternalWithMetrics(workingBoard);
+        
+        if (_firstSolution != null)
         {
-            return _firstSolution;
+            return SolverResult.WithSolution(_firstSolution, _metrics);
         }
         
-        return null;
+        return SolverResult.NoSolution(_metrics);
     }
     
     public int CountSolutions(Board puzzle, int limit = 2)
     {
+        var result = CountSolutionsWithMetrics(puzzle, limit);
+        return result.SolutionCount;
+    }
+    
+    public SolverResult CountSolutionsWithMetrics(Board puzzle, int limit = 2)
+    {
         _solutionCount = 0;
         _solutionLimit = limit;
         _firstSolution = null;
+        _metrics.Reset();
         
         var workingBoard = puzzle.Clone();
-        SolveInternal(workingBoard);
+        SolveInternalWithMetrics(workingBoard);
         
-        return _solutionCount;
+        return SolverResult.ForCounting(_solutionCount, _firstSolution, _metrics);
     }
     
     public bool HasUniqueSolution(Board puzzle)
@@ -44,68 +60,92 @@ public class DpllSolver : ISolver
         return CountSolutions(puzzle, 2) == 1;
     }
     
-    private bool SolveInternal(Board board)
+    public SolverResult HasUniqueSolutionWithMetrics(Board puzzle)
     {
-        // Unit propagation: fill cells with only one candidate
-        while (PropagateConstraints(board))
-        {
-            // Continue propagating until no more single candidates
-        }
-        
-        // Check if solved
-        if (board.IsComplete())
-        {
-            _solutionCount++;
-            if (_firstSolution == null)
-            {
-                _firstSolution = board.Clone();
-            }
-            return _solutionCount >= _solutionLimit;
-        }
-        
-        // Check if invalid (empty cell with no candidates)
-        if (HasEmptyCellWithNoCandidates(board))
-        {
-            return false;
-        }
-        
-        // Find the cell with fewest candidates (most constrained)
-        var (row, col, candidates) = FindBestCell(board);
-        if (row == -1)
-        {
-            return false;
-        }
-        
-        // Try each candidate
-        foreach (var candidate in candidates)
-        {
-            var testBoard = board.Clone();
-            testBoard[row, col] = candidate;
-            
-            if (SolveInternal(testBoard))
-            {
-                // Copy solution back
-                for (int r = 0; r < board.Size; r++)
-                {
-                    for (int c = 0; c < board.Size; c++)
-                    {
-                        board[r, c] = testBoard[r, c];
-                    }
-                }
-                return true;
-            }
-            
-            if (_solutionCount >= _solutionLimit)
-            {
-                return true;
-            }
-        }
-        
-        return false;
+        var result = CountSolutionsWithMetrics(puzzle, 2);
+        return result;
     }
     
-    private bool PropagateConstraints(Board board)
+    private bool SolveInternalWithMetrics(Board board)
     {
+        _metrics.IncrementIteration();
+        _metrics.EnterLevel();
+        
+        try
+        {
+            // Unit propagation: fill cells with only one candidate
+            while (PropagateConstraintsWithMetrics(board))
+            {
+                // Continue propagating until no more single candidates
+            }
+            
+            // Check if solved
+            if (board.IsComplete())
+            {
+                _solutionCount++;
+                if (_firstSolution == null)
+                {
+                    _firstSolution = board.Clone();
+                }
+                return _solutionCount >= _solutionLimit;
+            }
+            
+            // Check if invalid (empty cell with no candidates)
+            if (HasEmptyCellWithNoCandidates(board))
+            {
+                return false;
+            }
+            
+            // Find the cell with fewest candidates (most constrained)
+            var (row, col, candidates) = FindBestCell(board);
+            if (row == -1)
+            {
+                return false;
+            }
+            
+            // Record that we're making a guess (branching decision)
+            if (candidates.Count > 1)
+            {
+                _metrics.RecordGuess();
+            }
+            
+            // Try each candidate
+            foreach (var candidate in candidates)
+            {
+                var testBoard = board.Clone();
+                testBoard[row, col] = candidate;
+                
+                if (SolveInternalWithMetrics(testBoard))
+                {
+                    // Copy solution back
+                    for (int r = 0; r < board.Size; r++)
+                    {
+                        for (int c = 0; c < board.Size; c++)
+                        {
+                            board[r, c] = testBoard[r, c];
+                        }
+                    }
+                    return true;
+                }
+                
+                if (_solutionCount >= _solutionLimit)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        finally
+        {
+            _metrics.ExitLevel();
+        }
+    }
+    
+    private bool PropagateConstraintsWithMetrics(Board board)
+    {
+        _metrics.RecordPropagation();
+        
         // Use optimized bit-vector propagation if available
         var size = board.Size;
         Span<uint> rowCandidates = stackalloc uint[size];
@@ -278,4 +318,3 @@ public class DpllSolver : ISolver
         return true;
     }
 }
-

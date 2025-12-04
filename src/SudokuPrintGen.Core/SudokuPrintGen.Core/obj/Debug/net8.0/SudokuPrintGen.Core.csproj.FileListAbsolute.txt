@@ -9,3 +9,4 @@ D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.Core\SudokuPrintGen.Core\obj\
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.Core\SudokuPrintGen.Core\obj\Debug\net8.0\refint\SudokuPrintGen.Core.dll
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.Core\SudokuPrintGen.Core\obj\Debug\net8.0\SudokuPrintGen.Core.pdb
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.Core\SudokuPrintGen.Core\obj\Debug\net8.0\ref\SudokuPrintGen.Core.dll
+D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.Core\SudokuPrintGen.Core\obj\Debug\net8.0\SudokuPrintGen.Core.sourcelink.json

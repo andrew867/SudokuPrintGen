@@ -127,6 +127,11 @@ Options:
   --solution                 Include solution in output
   --solving-sheet            Include solving sheet (empty grid)
   --config <path>            Configuration file (JSON)
+
+Difficulty Targeting Options:
+  --refine-difficulty        Use iterative refinement for accurate difficulty targeting
+  --show-statistics          Display generation statistics after completion
+  --verbose                  Show detailed progress during generation
 ```
 
 ---
@@ -160,9 +165,14 @@ SudokuPrintGen/
 |-----------|-------------|
 | `Board.cs` | Sudoku board representation with clone/validation |
 | `Generator.cs` | Puzzle generation with SIMD-optimized solver |
-| `DpllSolver.cs` | Davis-Putnam-Logemann-Loveland algorithm |
+| `DpllSolver.cs` | Davis-Putnam-Logemann-Loveland algorithm with metrics |
+| `SolverResult.cs` | Solver metrics (iterations, depth, guesses) |
 | `SimdConstraintPropagator.cs` | AVX2/SSE hardware-accelerated operations |
-| `DifficultyRater.cs` | Technique-based difficulty analysis |
+| `DifficultyRater.cs` | Metrics-based difficulty analysis |
+| `DifficultyTargets.cs` | Iteration ranges and score thresholds |
+| `PuzzleRefiner.cs` | Iterative difficulty refinement |
+| `ClueAnalyzer.cs` | Strategic clue management |
+| `GenerationStatistics.cs` | Batch generation statistics tracking |
 | `SymmetryDetector.cs` | Pattern detection algorithms |
 | `LaTeXGenerator.cs` | TikZ-based grid generation |
 | `PdfCompiler.cs` | XeLaTeX/pdfLaTeX compilation |
@@ -202,10 +212,48 @@ Generated files follow this naming convention:
 
 ## 🎯 Advanced Features
 
+### Iteration-Based Difficulty System
+
+SudokuPrintGen uses a research-backed approach to difficulty targeting based on solver metrics:
+
+| Difficulty | Iteration Range | Description |
+|------------|-----------------|-------------|
+| Easy       | 1-10            | Minimal backtracking required |
+| Medium     | 11-25           | Some deduction needed |
+| Hard       | 26-80           | Advanced techniques required |
+| Expert     | 81-350          | Significant backtracking |
+| Evil       | 351+            | Maximum difficulty |
+
+#### Iterative Refinement
+Enable with `--refine-difficulty` for accurate targeting:
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --refine-difficulty
+```
+
+The system:
+1. Generates initial puzzle with approximate clue count
+2. Measures actual difficulty using solver metrics
+3. Iteratively adjusts clues until difficulty matches target
+
+#### Statistics Report
+Enable with `--show-statistics`:
+```
+=== Generation Statistics Report ===
+
+Difficulty    | Count | Avg Iter | Std Dev | Success % | Avg Score
+--------------|-------|----------|---------|-----------|----------
+Medium        |     5 |     17.4 |    3.21 |      80.0% |     14.2
+```
+
+See [docs/DifficultySystem.md](docs/DifficultySystem.md) for complete documentation.
+
 ### Difficulty Rating
 Puzzles are automatically analyzed to determine:
+- Solver iteration count (primary metric)
+- Max backtrack depth and guess count
 - Clue count and empty cell ratio
 - Required solving techniques (Naked Singles, Hidden Singles, Advanced)
+- Composite difficulty score
 - Estimated difficulty level
 
 ### Symmetry Detection
@@ -227,7 +275,7 @@ When generating multiple puzzles:
 
 ## ✅ Testing
 
-Run all 40 tests:
+Run all tests:
 ```bash
 dotnet test
 ```
@@ -235,8 +283,12 @@ dotnet test
 Test coverage includes:
 - Board operations and validation
 - Solver correctness and uniqueness checking
+- Solver metrics tracking (iterations, depth, guesses)
 - Generator with various difficulties
 - Difficulty rating algorithms
+- Difficulty targets and ranges
+- Iterative refinement process
+- Generation statistics tracking
 - Symmetry detection
 - PDF compilation
 - Difficulty distribution for mixed batches

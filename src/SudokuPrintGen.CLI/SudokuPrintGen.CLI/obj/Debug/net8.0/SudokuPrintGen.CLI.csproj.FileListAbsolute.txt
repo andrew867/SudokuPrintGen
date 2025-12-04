@@ -31,3 +31,4 @@ D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\obj\De
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\obj\Debug\net8.0\SudokuPrintGen.CLI.genruntimeconfig.cache
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\obj\Debug\net8.0\ref\SudokuPrintGen.CLI.dll
 D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\bin\Debug\net8.0\fonts\Futura Bold BT.ttf
+D:\vscode\Sudoku\SudokuPrintGen\src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\obj\Debug\net8.0\SudokuPrintGen.CLI.sourcelink.json

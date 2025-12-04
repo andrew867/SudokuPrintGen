@@ -5,12 +5,18 @@ namespace SudokuPrintGen.Core.Puzzle;
 
 /// <summary>
 /// Generates Sudoku puzzles with specified difficulty and variant.
+/// Supports both clue-count based and iteration-based difficulty targeting.
 /// </summary>
 public class PuzzleGenerator
 {
     private readonly ISolver _solver;
     private readonly Random _random;
     private readonly int? _seed;
+    
+    /// <summary>
+    /// Statistics tracking for batch generation.
+    /// </summary>
+    public GenerationStatistics Statistics { get; } = new();
     
     public PuzzleGenerator(ISolver? solver = null, int? seed = null)
     {
@@ -33,10 +39,16 @@ public class PuzzleGenerator
     public OutputStatistics? LastStatistics { get; private set; }
     
     /// <summary>
-    /// Generates a puzzle with the specified parameters.
+    /// Generates a puzzle with the specified parameters using the original clue-count method.
+    /// For more accurate difficulty targeting, use GenerateWithDifficultyTarget instead.
     /// </summary>
-    public GeneratedPuzzle Generate(Difficulty difficulty, Variant variant = Variant.Classic, int size = 9, int boxRows = 3, int boxCols = 3)
+    public GeneratedPuzzle Generate(Difficulty difficulty, Variant variant = Variant.Classic, int size = 9, int boxRows = 3, int boxCols = 3, bool useIterativeRefinement = false)
     {
+        if (useIterativeRefinement)
+        {
+            return GenerateWithDifficultyTarget(difficulty, variant, size, boxRows, boxCols);
+        }
+        
         var startTime = DateTime.UtcNow;
         int attempts = 0;
         
@@ -73,14 +85,17 @@ public class PuzzleGenerator
                     GenerationTime = generationTime,
                     SolveTime = solveTime,
                     ClueCount = puzzle.GetClueCount(),
-                    Attempts = attempts
+                    Attempts = attempts,
+                    TargetDifficulty = difficulty
                 };
                 
                 // Analyze puzzle
                 var rating = DifficultyRater.RatePuzzle(puzzle, _solver);
+                rating.TargetDifficulty = difficulty;
+                rating.IsInTargetRange = rating.MatchesDifficulty(difficulty);
                 var symmetry = SymmetryDetector.DetectSymmetry(puzzle);
                 
-                return new GeneratedPuzzle
+                var generatedPuzzle = new GeneratedPuzzle
                 {
                     Puzzle = puzzle,
                     Solution = solution,
@@ -92,11 +107,137 @@ public class PuzzleGenerator
                     DifficultyRating = rating,
                     Symmetry = symmetry
                 };
+                
+                // Track statistics
+                Statistics.AddPuzzle(generatedPuzzle);
+                
+                return generatedPuzzle;
             }
         }
         
         // If we couldn't generate a unique puzzle after max attempts, throw exception
         throw new InvalidOperationException($"Failed to generate a unique puzzle after {MaxGenerationAttempts} attempts. Try a different seed or difficulty.");
+    }
+    
+    /// <summary>
+    /// Generates a puzzle with accurate difficulty targeting using iterative refinement.
+    /// This method produces puzzles that more closely match the target difficulty level
+    /// by measuring actual solver metrics and adjusting clues accordingly.
+    /// </summary>
+    public GeneratedPuzzle GenerateWithDifficultyTarget(Difficulty targetDifficulty, Variant variant = Variant.Classic, int size = 9, int boxRows = 3, int boxCols = 3)
+    {
+        var startTime = DateTime.UtcNow;
+        int attempts = 0;
+        int totalRefinementIterations = 0;
+        
+        for (int attempt = 0; attempt < MaxGenerationAttempts; attempt++)
+        {
+            attempts++;
+            
+            // Start with a complete solved board
+            var solution = GenerateCompleteSolution(size, boxRows, boxCols);
+            if (solution == null)
+            {
+                continue;
+            }
+            
+            // Create initial puzzle with approximate clue count
+            var initialPuzzle = CreatePuzzleFromSolution(solution, targetDifficulty, size);
+            
+            // Validate puzzle
+            var validation = BoardValidator.Validate(initialPuzzle);
+            if (!validation.IsValid)
+            {
+                continue;
+            }
+            
+            // Verify uniqueness
+            if (!_solver.HasUniqueSolution(initialPuzzle))
+            {
+                continue;
+            }
+            
+            // Apply iterative refinement to match target difficulty
+            var (refinedPuzzle, success, refinementIterations, finalRating) = 
+                PuzzleRefiner.RefineToDifficulty(initialPuzzle, solution, targetDifficulty, _solver, _random);
+            
+            totalRefinementIterations += refinementIterations;
+            
+            // Get metrics for statistics
+            var solverResult = _solver.SolveWithMetrics(refinedPuzzle);
+            var generationTime = DateTime.UtcNow - startTime;
+            
+            LastStatistics = new OutputStatistics
+            {
+                GenerationTime = generationTime,
+                SolveTime = TimeSpan.FromMilliseconds(refinementIterations), // Approximation
+                ClueCount = refinedPuzzle.GetClueCount(),
+                Attempts = attempts,
+                TargetDifficulty = targetDifficulty,
+                ActualDifficultyRating = finalRating,
+                DifficultyMatch = success,
+                RefinementIterations = refinementIterations,
+                InitialIterationCount = 0, // Would need initial solve to get this
+                FinalIterationCount = solverResult.IterationCount
+            };
+            
+            var symmetry = SymmetryDetector.DetectSymmetry(refinedPuzzle);
+            
+            var generatedPuzzle = new GeneratedPuzzle
+            {
+                Puzzle = refinedPuzzle,
+                Solution = solution,
+                Difficulty = targetDifficulty,
+                Variant = variant,
+                Seed = _seed,
+                GeneratedAt = DateTime.UtcNow,
+                SolverAlgorithm = "DPLL",
+                DifficultyRating = finalRating,
+                Symmetry = symmetry
+            };
+            
+            // Track statistics
+            Statistics.AddPuzzle(generatedPuzzle);
+            
+            // If we successfully matched the target, return immediately
+            // Otherwise, continue trying to get a better match
+            if (success || attempt >= MaxGenerationAttempts - 1)
+            {
+                return generatedPuzzle;
+            }
+            
+            // If not successful but close, we might accept it after a few more tries
+            if (attempt >= MaxGenerationAttempts / 2)
+            {
+                // Accept puzzles that are within one difficulty level
+                var estimatedDifficulty = finalRating.EstimatedDifficulty;
+                var targetIndex = (int)targetDifficulty;
+                var estimatedIndex = (int)estimatedDifficulty;
+                
+                if (Math.Abs(targetIndex - estimatedIndex) <= 1)
+                {
+                    return generatedPuzzle;
+                }
+            }
+        }
+        
+        throw new InvalidOperationException($"Failed to generate a puzzle matching difficulty {targetDifficulty} after {MaxGenerationAttempts} attempts.");
+    }
+    
+    /// <summary>
+    /// Gets a report of generation statistics.
+    /// </summary>
+    public string GetStatisticsReport()
+    {
+        return Statistics.GetReport();
+    }
+    
+    /// <summary>
+    /// Resets generation statistics.
+    /// </summary>
+    public void ResetStatistics()
+    {
+        Statistics.Reset();
     }
     
     private Board? GenerateCompleteSolution(int size, int boxRows, int boxCols)
@@ -222,4 +363,3 @@ public class GeneratedPuzzle
     public DifficultyRating? DifficultyRating { get; set; }
     public SymmetryInfo? Symmetry { get; set; }
 }
-

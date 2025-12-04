@@ -1,0 +1,3068 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{letterpaper,
+          left=0.5in, right=0.5in,
+          top=0.4in, bottom=0.4in}
+\usepackage{fontspec}
+\setmainfont{Futura Bold BT}[Path={D:/vscode/Sudoku/SudokuPrintGen/src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/bin/Debug/net8.0/fonts/}, Extension=.ttf]
+\begin{document}
+\pagestyle{empty}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {3};
+  \node[font=\large] at (1.50cm,5.10cm) {5};
+  \node[font=\large] at (2.70cm,5.10cm) {4};
+  \node[font=\large] at (3.30cm,5.10cm) {8};
+  \node[font=\large] at (1.50cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,4.50cm) {6};
+  \node[font=\large] at (3.90cm,4.50cm) {1};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.90cm,3.90cm) {1};
+  \node[font=\large] at (1.50cm,3.90cm) {6};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (0.30cm,3.30cm) {1};
+  \node[font=\large] at (0.90cm,3.30cm) {3};
+  \node[font=\large] at (1.50cm,3.30cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {9};
+  \node[font=\large] at (5.10cm,3.30cm) {8};
+  \node[font=\large] at (0.30cm,2.70cm) {7};
+  \node[font=\large] at (1.50cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {8};
+  \node[font=\large] at (2.70cm,2.70cm) {6};
+  \node[font=\large] at (3.30cm,2.70cm) {3};
+  \node[font=\large] at (4.50cm,2.70cm) {4};
+  \node[font=\large] at (0.30cm,2.10cm) {9};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (1.50cm,1.50cm) {1};
+  \node[font=\large] at (3.90cm,1.50cm) {4};
+  \node[font=\large] at (4.50cm,1.50cm) {3};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (2.10cm,0.90cm) {3};
+  \node[font=\large] at (2.70cm,0.90cm) {5};
+  \node[font=\large] at (3.30cm,0.90cm) {7};
+  \node[font=\large] at (3.90cm,0.90cm) {8};
+  \node[font=\large] at (4.50cm,0.90cm) {1};
+  \node[font=\large] at (5.10cm,0.90cm) {2};
+  \node[font=\large] at (2.10cm,0.30cm) {2};
+  \node[font=\large] at (2.70cm,0.30cm) {1};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#1 (Seed: 1705816251) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {7};
+  \node[font=\large] at (3.30cm,5.10cm) {3};
+  \node[font=\large] at (5.10cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {4};
+  \node[font=\large] at (1.50cm,4.50cm) {8};
+  \node[font=\large] at (2.10cm,4.50cm) {2};
+  \node[font=\large] at (3.90cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (0.90cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {4};
+  \node[font=\large] at (5.10cm,3.90cm) {6};
+  \node[font=\large] at (0.30cm,3.30cm) {2};
+  \node[font=\large] at (0.90cm,3.30cm) {9};
+  \node[font=\large] at (3.30cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (2.10cm,2.70cm) {4};
+  \node[font=\large] at (3.30cm,2.70cm) {7};
+  \node[font=\large] at (4.50cm,2.70cm) {8};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (2.70cm,2.10cm) {5};
+  \node[font=\large] at (3.30cm,2.10cm) {2};
+  \node[font=\large] at (3.90cm,2.10cm) {7};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.90cm,1.50cm) {2};
+  \node[font=\large] at (1.50cm,1.50cm) {5};
+  \node[font=\large] at (3.30cm,1.50cm) {9};
+  \node[font=\large] at (3.90cm,1.50cm) {6};
+  \node[font=\large] at (5.10cm,1.50cm) {1};
+  \node[font=\large] at (0.90cm,0.90cm) {7};
+  \node[font=\large] at (1.50cm,0.90cm) {3};
+  \node[font=\large] at (4.50cm,0.90cm) {2};
+  \node[font=\large] at (5.10cm,0.90cm) {9};
+  \node[font=\large] at (0.30cm,0.30cm) {9};
+  \node[font=\large] at (1.50cm,0.30cm) {6};
+  \node[font=\large] at (2.70cm,0.30cm) {2};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+  \node[font=\large] at (4.50cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#2 (Seed: 1705816252) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {8};
+  \node[font=\large] at (3.30cm,5.10cm) {4};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (5.10cm,5.10cm) {9};
+  \node[font=\large] at (0.30cm,4.50cm) {3};
+  \node[font=\large] at (0.90cm,4.50cm) {1};
+  \node[font=\large] at (4.50cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,3.90cm) {7};
+  \node[font=\large] at (1.50cm,3.30cm) {5};
+  \node[font=\large] at (2.10cm,3.30cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {9};
+  \node[font=\large] at (3.90cm,3.30cm) {3};
+  \node[font=\large] at (4.50cm,3.30cm) {2};
+  \node[font=\large] at (2.70cm,2.70cm) {5};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (1.50cm,2.10cm) {2};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (0.30cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {9};
+  \node[font=\large] at (2.70cm,1.50cm) {6};
+  \node[font=\large] at (4.50cm,1.50cm) {7};
+  \node[font=\large] at (5.10cm,1.50cm) {2};
+  \node[font=\large] at (0.90cm,0.90cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (5.10cm,0.90cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {7};
+  \node[font=\large] at (2.70cm,0.30cm) {4};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#3 (Seed: 1705816253) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {7};
+  \node[font=\large] at (2.70cm,5.10cm) {5};
+  \node[font=\large] at (3.30cm,5.10cm) {2};
+  \node[font=\large] at (5.10cm,5.10cm) {6};
+  \node[font=\large] at (1.50cm,4.50cm) {6};
+  \node[font=\large] at (3.90cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {8};
+  \node[font=\large] at (0.90cm,3.90cm) {8};
+  \node[font=\large] at (1.50cm,3.90cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {3};
+  \node[font=\large] at (0.30cm,3.30cm) {1};
+  \node[font=\large] at (2.10cm,3.30cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,3.30cm) {8};
+  \node[font=\large] at (3.90cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (2.10cm,2.70cm) {1};
+  \node[font=\large] at (3.30cm,2.70cm) {7};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {1};
+  \node[font=\large] at (3.30cm,1.50cm) {6};
+  \node[font=\large] at (4.50cm,1.50cm) {4};
+  \node[font=\large] at (1.50cm,0.90cm) {4};
+  \node[font=\large] at (2.10cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (4.50cm,0.90cm) {6};
+  \node[font=\large] at (3.90cm,0.30cm) {8};
+  \node[font=\large] at (4.50cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#4 (Seed: 1705816254) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {1};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {5};
+  \node[font=\large] at (1.50cm,4.50cm) {1};
+  \node[font=\large] at (2.10cm,4.50cm) {2};
+  \node[font=\large] at (2.70cm,4.50cm) {4};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (0.30cm,3.90cm) {9};
+  \node[font=\large] at (0.90cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {6};
+  \node[font=\large] at (3.90cm,3.90cm) {4};
+  \node[font=\large] at (1.50cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {1};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (3.30cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.10cm) {6};
+  \node[font=\large] at (3.90cm,2.10cm) {7};
+  \node[font=\large] at (5.10cm,2.10cm) {2};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (1.50cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {9};
+  \node[font=\large] at (3.30cm,1.50cm) {2};
+  \node[font=\large] at (0.30cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {7};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {8};
+  \node[font=\large] at (4.50cm,0.90cm) {4};
+  \node[font=\large] at (5.10cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {7};
+  \node[font=\large] at (0.90cm,0.30cm) {1};
+  \node[font=\large] at (1.50cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#5 (Seed: 1705816255) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {4};
+  \node[font=\large] at (0.90cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,5.10cm) {1};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {5};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {6};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (3.30cm,4.50cm) {2};
+  \node[font=\large] at (4.50cm,4.50cm) {4};
+  \node[font=\large] at (0.30cm,3.90cm) {8};
+  \node[font=\large] at (0.90cm,3.90cm) {5};
+  \node[font=\large] at (3.90cm,3.90cm) {7};
+  \node[font=\large] at (4.50cm,3.90cm) {3};
+  \node[font=\large] at (5.10cm,3.90cm) {6};
+  \node[font=\large] at (0.90cm,3.30cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (3.90cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {8};
+  \node[font=\large] at (5.10cm,3.30cm) {3};
+  \node[font=\large] at (2.10cm,2.70cm) {5};
+  \node[font=\large] at (2.70cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.70cm) {3};
+  \node[font=\large] at (5.10cm,2.70cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (2.10cm,2.10cm) {2};
+  \node[font=\large] at (3.30cm,2.10cm) {7};
+  \node[font=\large] at (4.50cm,2.10cm) {6};
+  \node[font=\large] at (5.10cm,2.10cm) {4};
+  \node[font=\large] at (0.30cm,0.90cm) {7};
+  \node[font=\large] at (2.10cm,0.90cm) {6};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {3};
+  \node[font=\large] at (0.30cm,0.30cm) {9};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (1.50cm,0.30cm) {5};
+  \node[font=\large] at (2.10cm,0.30cm) {4};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#6 (Seed: 1705816256) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {2};
+  \node[font=\large] at (1.50cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {9};
+  \node[font=\large] at (3.30cm,5.10cm) {3};
+  \node[font=\large] at (0.30cm,4.50cm) {1};
+  \node[font=\large] at (1.50cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {6};
+  \node[font=\large] at (3.90cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {4};
+  \node[font=\large] at (0.90cm,3.30cm) {7};
+  \node[font=\large] at (3.30cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {8};
+  \node[font=\large] at (2.10cm,2.70cm) {3};
+  \node[font=\large] at (3.90cm,2.70cm) {5};
+  \node[font=\large] at (5.10cm,2.70cm) {2};
+  \node[font=\large] at (0.30cm,2.10cm) {2};
+  \node[font=\large] at (0.90cm,2.10cm) {3};
+  \node[font=\large] at (2.10cm,2.10cm) {7};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (2.70cm,1.50cm) {5};
+  \node[font=\large] at (3.90cm,1.50cm) {2};
+  \node[font=\large] at (0.90cm,0.90cm) {6};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {7};
+  \node[font=\large] at (4.50cm,0.90cm) {9};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (3.30cm,0.30cm) {9};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#7 (Seed: 1705816257) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (1.50cm,5.10cm) {2};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (4.50cm,5.10cm) {5};
+  \node[font=\large] at (5.10cm,5.10cm) {9};
+  \node[font=\large] at (0.30cm,4.50cm) {7};
+  \node[font=\large] at (3.30cm,4.50cm) {9};
+  \node[font=\large] at (5.10cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {6};
+  \node[font=\large] at (3.90cm,3.90cm) {2};
+  \node[font=\large] at (0.30cm,3.30cm) {3};
+  \node[font=\large] at (2.10cm,3.30cm) {7};
+  \node[font=\large] at (2.70cm,3.30cm) {5};
+  \node[font=\large] at (5.10cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {1};
+  \node[font=\large] at (3.30cm,2.70cm) {2};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (0.30cm,0.90cm) {9};
+  \node[font=\large] at (2.10cm,0.90cm) {3};
+  \node[font=\large] at (2.70cm,0.90cm) {6};
+  \node[font=\large] at (4.50cm,0.90cm) {4};
+  \node[font=\large] at (5.10cm,0.90cm) {7};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (0.90cm,0.30cm) {6};
+  \node[font=\large] at (2.10cm,0.30cm) {9};
+  \node[font=\large] at (4.50cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#8 (Seed: 1705816258) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {1};
+  \node[font=\large] at (0.90cm,5.10cm) {3};
+  \node[font=\large] at (1.50cm,5.10cm) {2};
+  \node[font=\large] at (3.30cm,5.10cm) {6};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (1.50cm,4.50cm) {7};
+  \node[font=\large] at (2.70cm,4.50cm) {4};
+  \node[font=\large] at (4.50cm,4.50cm) {8};
+  \node[font=\large] at (5.10cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {6};
+  \node[font=\large] at (0.90cm,3.90cm) {4};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {5};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (4.50cm,3.90cm) {2};
+  \node[font=\large] at (0.90cm,3.30cm) {1};
+  \node[font=\large] at (3.30cm,3.30cm) {8};
+  \node[font=\large] at (4.50cm,3.30cm) {9};
+  \node[font=\large] at (0.30cm,2.70cm) {4};
+  \node[font=\large] at (2.70cm,2.70cm) {9};
+  \node[font=\large] at (3.90cm,2.70cm) {2};
+  \node[font=\large] at (4.50cm,2.70cm) {3};
+  \node[font=\large] at (1.50cm,2.10cm) {9};
+  \node[font=\large] at (3.30cm,2.10cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,1.50cm) {8};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (0.30cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {1};
+  \node[font=\large] at (2.70cm,0.90cm) {3};
+  \node[font=\large] at (3.30cm,0.90cm) {4};
+  \node[font=\large] at (3.90cm,0.90cm) {5};
+  \node[font=\large] at (4.50cm,0.90cm) {7};
+  \node[font=\large] at (5.10cm,0.90cm) {2};
+  \node[font=\large] at (0.30cm,0.30cm) {7};
+  \node[font=\large] at (1.50cm,0.30cm) {4};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (4.50cm,0.30cm) {6};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#9 (Seed: 1705816259) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {5};
+  \node[font=\large] at (2.70cm,5.10cm) {3};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {1};
+  \node[font=\large] at (2.10cm,4.50cm) {4};
+  \node[font=\large] at (2.70cm,4.50cm) {6};
+  \node[font=\large] at (3.30cm,4.50cm) {9};
+  \node[font=\large] at (3.90cm,4.50cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {3};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (4.50cm,3.90cm) {9};
+  \node[font=\large] at (5.10cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.30cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {9};
+  \node[font=\large] at (3.90cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {7};
+  \node[font=\large] at (5.10cm,3.30cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.70cm) {9};
+  \node[font=\large] at (2.10cm,2.70cm) {7};
+  \node[font=\large] at (4.50cm,2.70cm) {6};
+  \node[font=\large] at (0.30cm,2.10cm) {3};
+  \node[font=\large] at (1.50cm,2.10cm) {6};
+  \node[font=\large] at (2.70cm,2.10cm) {5};
+  \node[font=\large] at (3.90cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {8};
+  \node[font=\large] at (0.30cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {9};
+  \node[font=\large] at (3.30cm,1.50cm) {5};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (2.10cm,0.90cm) {3};
+  \node[font=\large] at (2.70cm,0.90cm) {7};
+  \node[font=\large] at (3.30cm,0.90cm) {6};
+  \node[font=\large] at (3.90cm,0.90cm) {8};
+  \node[font=\large] at (5.10cm,0.90cm) {5};
+  \node[font=\large] at (1.50cm,0.30cm) {2};
+  \node[font=\large] at (2.70cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {3};
+  \node[font=\large] at (5.10cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#10 (Seed: 1705816260) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (3.30cm,5.10cm) {6};
+  \node[font=\large] at (5.10cm,5.10cm) {9};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (0.30cm,3.90cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {5};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.30cm) {1};
+  \node[font=\large] at (3.90cm,3.30cm) {2};
+  \node[font=\large] at (0.30cm,2.70cm) {7};
+  \node[font=\large] at (0.90cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.70cm) {2};
+  \node[font=\large] at (0.30cm,2.10cm) {5};
+  \node[font=\large] at (2.10cm,2.10cm) {6};
+  \node[font=\large] at (2.70cm,2.10cm) {8};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {4};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,1.50cm) {2};
+  \node[font=\large] at (3.90cm,1.50cm) {6};
+  \node[font=\large] at (4.50cm,1.50cm) {9};
+  \node[font=\large] at (0.30cm,0.90cm) {8};
+  \node[font=\large] at (0.90cm,0.90cm) {7};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (5.10cm,0.90cm) {1};
+  \node[font=\large] at (0.90cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {1};
+  \node[font=\large] at (3.90cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#11 (Seed: 1705816261) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {2};
+  \node[font=\large] at (1.50cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {4};
+  \node[font=\large] at (3.30cm,5.10cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (3.30cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {4};
+  \node[font=\large] at (0.90cm,3.90cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {4};
+  \node[font=\large] at (2.10cm,3.90cm) {1};
+  \node[font=\large] at (3.90cm,3.90cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (0.30cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {1};
+  \node[font=\large] at (4.50cm,2.70cm) {7};
+  \node[font=\large] at (2.10cm,2.10cm) {9};
+  \node[font=\large] at (3.30cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {6};
+  \node[font=\large] at (0.90cm,1.50cm) {7};
+  \node[font=\large] at (1.50cm,1.50cm) {5};
+  \node[font=\large] at (4.50cm,1.50cm) {9};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (5.10cm,0.90cm) {3};
+  \node[font=\large] at (0.30cm,0.30cm) {4};
+  \node[font=\large] at (0.90cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#12 (Seed: 1705816262) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {3};
+  \node[font=\large] at (3.90cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {2};
+  \node[font=\large] at (0.90cm,4.50cm) {7};
+  \node[font=\large] at (2.70cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {8};
+  \node[font=\large] at (5.10cm,4.50cm) {4};
+  \node[font=\large] at (0.30cm,3.90cm) {4};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.10cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {2};
+  \node[font=\large] at (4.50cm,3.90cm) {6};
+  \node[font=\large] at (1.50cm,3.30cm) {5};
+  \node[font=\large] at (3.90cm,3.30cm) {3};
+  \node[font=\large] at (4.50cm,3.30cm) {9};
+  \node[font=\large] at (0.30cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {1};
+  \node[font=\large] at (1.50cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.70cm) {9};
+  \node[font=\large] at (1.50cm,2.10cm) {4};
+  \node[font=\large] at (2.10cm,2.10cm) {3};
+  \node[font=\large] at (2.70cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {1};
+  \node[font=\large] at (5.10cm,2.10cm) {8};
+  \node[font=\large] at (0.30cm,1.50cm) {5};
+  \node[font=\large] at (1.50cm,1.50cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {4};
+  \node[font=\large] at (3.90cm,1.50cm) {6};
+  \node[font=\large] at (0.90cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {3};
+  \node[font=\large] at (4.50cm,0.90cm) {4};
+  \node[font=\large] at (5.10cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {4};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#13 (Seed: 1705816263) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {3};
+  \node[font=\large] at (5.10cm,5.10cm) {1};
+  \node[font=\large] at (1.50cm,4.50cm) {6};
+  \node[font=\large] at (2.10cm,4.50cm) {4};
+  \node[font=\large] at (2.70cm,4.50cm) {5};
+  \node[font=\large] at (3.30cm,4.50cm) {3};
+  \node[font=\large] at (0.30cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {1};
+  \node[font=\large] at (3.90cm,3.90cm) {5};
+  \node[font=\large] at (4.50cm,3.90cm) {6};
+  \node[font=\large] at (5.10cm,3.90cm) {3};
+  \node[font=\large] at (0.30cm,3.30cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,3.30cm) {5};
+  \node[font=\large] at (3.90cm,3.30cm) {9};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (5.10cm,3.30cm) {8};
+  \node[font=\large] at (2.10cm,2.70cm) {9};
+  \node[font=\large] at (2.70cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (1.50cm,2.10cm) {9};
+  \node[font=\large] at (2.10cm,2.10cm) {1};
+  \node[font=\large] at (2.70cm,2.10cm) {8};
+  \node[font=\large] at (3.30cm,2.10cm) {7};
+  \node[font=\large] at (4.50cm,2.10cm) {4};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,1.50cm) {2};
+  \node[font=\large] at (2.10cm,1.50cm) {3};
+  \node[font=\large] at (3.30cm,1.50cm) {8};
+  \node[font=\large] at (0.30cm,0.90cm) {7};
+  \node[font=\large] at (2.10cm,0.90cm) {6};
+  \node[font=\large] at (2.70cm,0.90cm) {4};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (4.50cm,0.90cm) {5};
+  \node[font=\large] at (1.50cm,0.30cm) {1};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (4.50cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#14 (Seed: 1705816264) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (3.90cm,5.10cm) {2};
+  \node[font=\large] at (5.10cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,4.50cm) {8};
+  \node[font=\large] at (3.90cm,4.50cm) {4};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (0.90cm,3.90cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {5};
+  \node[font=\large] at (1.50cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,3.30cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {6};
+  \node[font=\large] at (2.10cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {2};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (2.70cm,2.10cm) {3};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {3};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (2.70cm,1.50cm) {7};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (5.10cm,1.50cm) {2};
+  \node[font=\large] at (1.50cm,0.90cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (3.30cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.30cm) {4};
+  \node[font=\large] at (1.50cm,0.30cm) {7};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (3.30cm,0.30cm) {2};
+  \node[font=\large] at (3.90cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#15 (Seed: 1705816265) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {2};
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (5.10cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {6};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (1.50cm,3.90cm) {4};
+  \node[font=\large] at (4.50cm,3.90cm) {6};
+  \node[font=\large] at (5.10cm,3.90cm) {1};
+  \node[font=\large] at (0.30cm,3.30cm) {8};
+  \node[font=\large] at (2.70cm,3.30cm) {3};
+  \node[font=\large] at (3.30cm,3.30cm) {7};
+  \node[font=\large] at (3.90cm,3.30cm) {6};
+  \node[font=\large] at (0.90cm,2.70cm) {2};
+  \node[font=\large] at (2.70cm,2.70cm) {5};
+  \node[font=\large] at (3.30cm,2.70cm) {1};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (5.10cm,1.50cm) {9};
+  \node[font=\large] at (0.30cm,0.90cm) {4};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (2.70cm,0.90cm) {9};
+  \node[font=\large] at (3.30cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {9};
+  \node[font=\large] at (0.90cm,0.30cm) {5};
+  \node[font=\large] at (2.10cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {4};
+  \node[font=\large] at (3.90cm,0.30cm) {1};
+  \node[font=\large] at (5.10cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#16 (Seed: 1705816266) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {5};
+  \node[font=\large] at (0.90cm,5.10cm) {2};
+  \node[font=\large] at (1.50cm,5.10cm) {1};
+  \node[font=\large] at (2.10cm,5.10cm) {6};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (4.50cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {4};
+  \node[font=\large] at (0.30cm,3.30cm) {6};
+  \node[font=\large] at (0.90cm,3.30cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {2};
+  \node[font=\large] at (2.10cm,3.30cm) {7};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (3.90cm,3.30cm) {4};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (5.10cm,3.30cm) {9};
+  \node[font=\large] at (0.90cm,2.70cm) {9};
+  \node[font=\large] at (2.10cm,2.70cm) {4};
+  \node[font=\large] at (3.30cm,2.70cm) {6};
+  \node[font=\large] at (3.90cm,2.70cm) {2};
+  \node[font=\large] at (4.50cm,2.70cm) {8};
+  \node[font=\large] at (5.10cm,2.70cm) {1};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (3.30cm,2.10cm) {1};
+  \node[font=\large] at (3.90cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,1.50cm) {7};
+  \node[font=\large] at (2.10cm,1.50cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {7};
+  \node[font=\large] at (3.90cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+  \node[font=\large] at (2.10cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {6};
+  \node[font=\large] at (3.90cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#17 (Seed: 1705816267) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {3};
+  \node[font=\large] at (1.50cm,5.10cm) {2};
+  \node[font=\large] at (2.70cm,5.10cm) {1};
+  \node[font=\large] at (3.30cm,5.10cm) {9};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (5.10cm,5.10cm) {6};
+  \node[font=\large] at (0.30cm,4.50cm) {4};
+  \node[font=\large] at (1.50cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {8};
+  \node[font=\large] at (0.30cm,3.90cm) {8};
+  \node[font=\large] at (1.50cm,3.90cm) {5};
+  \node[font=\large] at (2.70cm,3.90cm) {6};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (4.50cm,3.30cm) {6};
+  \node[font=\large] at (0.30cm,2.70cm) {1};
+  \node[font=\large] at (0.90cm,2.70cm) {4};
+  \node[font=\large] at (1.50cm,2.70cm) {8};
+  \node[font=\large] at (2.70cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {5};
+  \node[font=\large] at (3.90cm,2.70cm) {7};
+  \node[font=\large] at (4.50cm,2.70cm) {2};
+  \node[font=\large] at (0.30cm,2.10cm) {5};
+  \node[font=\large] at (2.70cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {8};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {1};
+  \node[font=\large] at (2.10cm,1.50cm) {9};
+  \node[font=\large] at (3.90cm,1.50cm) {8};
+  \node[font=\large] at (0.30cm,0.90cm) {7};
+  \node[font=\large] at (0.90cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (2.10cm,0.90cm) {4};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (5.10cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {5};
+  \node[font=\large] at (2.10cm,0.30cm) {3};
+  \node[font=\large] at (2.70cm,0.30cm) {7};
+  \node[font=\large] at (3.90cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#18 (Seed: 1705816268) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {4};
+  \node[font=\large] at (0.90cm,5.10cm) {5};
+  \node[font=\large] at (3.90cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {6};
+  \node[font=\large] at (1.50cm,4.50cm) {9};
+  \node[font=\large] at (2.10cm,4.50cm) {3};
+  \node[font=\large] at (3.90cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {1};
+  \node[font=\large] at (3.30cm,3.90cm) {4};
+  \node[font=\large] at (1.50cm,3.30cm) {5};
+  \node[font=\large] at (2.70cm,3.30cm) {1};
+  \node[font=\large] at (0.30cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {1};
+  \node[font=\large] at (3.30cm,2.70cm) {9};
+  \node[font=\large] at (3.90cm,2.70cm) {6};
+  \node[font=\large] at (4.50cm,2.70cm) {2};
+  \node[font=\large] at (0.90cm,2.10cm) {4};
+  \node[font=\large] at (2.10cm,2.10cm) {6};
+  \node[font=\large] at (2.70cm,2.10cm) {7};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {3};
+  \node[font=\large] at (2.10cm,1.50cm) {1};
+  \node[font=\large] at (5.10cm,1.50cm) {6};
+  \node[font=\large] at (0.30cm,0.90cm) {1};
+  \node[font=\large] at (0.90cm,0.90cm) {9};
+  \node[font=\large] at (3.90cm,0.90cm) {4};
+  \node[font=\large] at (0.30cm,0.30cm) {2};
+  \node[font=\large] at (2.10cm,0.30cm) {9};
+  \node[font=\large] at (4.50cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#19 (Seed: 1705816269) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {1};
+  \node[font=\large] at (2.70cm,5.10cm) {3};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (2.70cm,4.50cm) {9};
+  \node[font=\large] at (3.90cm,4.50cm) {8};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {4};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (0.90cm,3.30cm) {2};
+  \node[font=\large] at (1.50cm,3.30cm) {9};
+  \node[font=\large] at (3.90cm,3.30cm) {6};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {4};
+  \node[font=\large] at (3.90cm,2.70cm) {9};
+  \node[font=\large] at (4.50cm,2.70cm) {2};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (1.50cm,2.10cm) {3};
+  \node[font=\large] at (3.30cm,2.10cm) {4};
+  \node[font=\large] at (0.90cm,1.50cm) {4};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (3.30cm,1.50cm) {9};
+  \node[font=\large] at (3.90cm,1.50cm) {5};
+  \node[font=\large] at (4.50cm,1.50cm) {3};
+  \node[font=\large] at (0.90cm,0.90cm) {3};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (5.10cm,0.90cm) {8};
+  \node[font=\large] at (0.90cm,0.30cm) {6};
+  \node[font=\large] at (1.50cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {4};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#20 (Seed: 1705816270) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {9};
+  \node[font=\large] at (1.50cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {7};
+  \node[font=\large] at (3.30cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {5};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (3.90cm,4.50cm) {1};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (0.30cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {3};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (3.30cm,3.30cm) {3};
+  \node[font=\large] at (5.10cm,3.30cm) {5};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {1};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (4.50cm,2.70cm) {2};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (0.90cm,2.10cm) {3};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (2.10cm,2.10cm) {2};
+  \node[font=\large] at (3.90cm,2.10cm) {6};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {2};
+  \node[font=\large] at (2.10cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,1.50cm) {6};
+  \node[font=\large] at (3.90cm,1.50cm) {3};
+  \node[font=\large] at (4.50cm,1.50cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {4};
+  \node[font=\large] at (3.90cm,0.90cm) {7};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {3};
+  \node[font=\large] at (4.50cm,0.30cm) {1};
+  \node[font=\large] at (5.10cm,0.30cm) {4};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#21 (Seed: 1705816271) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {3};
+  \node[font=\large] at (0.90cm,5.10cm) {1};
+  \node[font=\large] at (1.50cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (0.30cm,4.50cm) {8};
+  \node[font=\large] at (1.50cm,4.50cm) {5};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (3.90cm,4.50cm) {6};
+  \node[font=\large] at (4.50cm,4.50cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {6};
+  \node[font=\large] at (3.90cm,3.90cm) {4};
+  \node[font=\large] at (5.10cm,3.90cm) {5};
+  \node[font=\large] at (0.30cm,3.30cm) {9};
+  \node[font=\large] at (0.90cm,3.30cm) {8};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (1.50cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {1};
+  \node[font=\large] at (3.30cm,2.70cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {5};
+  \node[font=\large] at (1.50cm,2.10cm) {3};
+  \node[font=\large] at (2.70cm,2.10cm) {8};
+  \node[font=\large] at (3.30cm,2.10cm) {6};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (0.30cm,1.50cm) {6};
+  \node[font=\large] at (0.90cm,1.50cm) {3};
+  \node[font=\large] at (1.50cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {5};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (0.30cm,0.90cm) {1};
+  \node[font=\large] at (2.70cm,0.90cm) {6};
+  \node[font=\large] at (3.30cm,0.90cm) {8};
+  \node[font=\large] at (5.10cm,0.90cm) {7};
+  \node[font=\large] at (0.90cm,0.30cm) {7};
+  \node[font=\large] at (1.50cm,0.30cm) {4};
+  \node[font=\large] at (3.30cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {6};
+  \node[font=\large] at (5.10cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#22 (Seed: 1705816272) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {9};
+  \node[font=\large] at (3.30cm,4.50cm) {3};
+  \node[font=\large] at (5.10cm,4.50cm) {4};
+  \node[font=\large] at (0.30cm,3.90cm) {4};
+  \node[font=\large] at (2.70cm,3.90cm) {8};
+  \node[font=\large] at (3.30cm,3.90cm) {7};
+  \node[font=\large] at (0.90cm,3.30cm) {8};
+  \node[font=\large] at (4.50cm,3.30cm) {6};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (1.50cm,2.70cm) {5};
+  \node[font=\large] at (2.70cm,2.70cm) {6};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {4};
+  \node[font=\large] at (3.30cm,1.50cm) {9};
+  \node[font=\large] at (5.10cm,1.50cm) {8};
+  \node[font=\large] at (0.90cm,0.90cm) {6};
+  \node[font=\large] at (4.50cm,0.90cm) {1};
+  \node[font=\large] at (0.30cm,0.30cm) {1};
+  \node[font=\large] at (1.50cm,0.30cm) {7};
+  \node[font=\large] at (4.50cm,0.30cm) {3};
+  \node[font=\large] at (5.10cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#23 (Seed: 1705816273) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,4.50cm) {2};
+  \node[font=\large] at (4.50cm,4.50cm) {4};
+  \node[font=\large] at (0.90cm,3.90cm) {7};
+  \node[font=\large] at (2.10cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {4};
+  \node[font=\large] at (4.50cm,3.90cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {4};
+  \node[font=\large] at (5.10cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,2.70cm) {2};
+  \node[font=\large] at (2.70cm,2.70cm) {8};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (2.10cm,2.10cm) {3};
+  \node[font=\large] at (3.90cm,2.10cm) {1};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {2};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (0.30cm,0.90cm) {5};
+  \node[font=\large] at (0.90cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {3};
+  \node[font=\large] at (3.90cm,0.90cm) {9};
+  \node[font=\large] at (5.10cm,0.90cm) {1};
+  \node[font=\large] at (1.50cm,0.30cm) {9};
+  \node[font=\large] at (3.30cm,0.30cm) {3};
+  \node[font=\large] at (3.90cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#24 (Seed: 1705816274) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {6};
+  \node[font=\large] at (3.90cm,5.10cm) {3};
+  \node[font=\large] at (0.90cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {6};
+  \node[font=\large] at (3.90cm,4.50cm) {1};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {7};
+  \node[font=\large] at (1.50cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {4};
+  \node[font=\large] at (4.50cm,3.90cm) {6};
+  \node[font=\large] at (0.30cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,3.30cm) {2};
+  \node[font=\large] at (1.50cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {3};
+  \node[font=\large] at (4.50cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {4};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (2.10cm,2.70cm) {4};
+  \node[font=\large] at (3.30cm,2.70cm) {7};
+  \node[font=\large] at (3.90cm,2.70cm) {9};
+  \node[font=\large] at (4.50cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {4};
+  \node[font=\large] at (2.70cm,2.10cm) {9};
+  \node[font=\large] at (3.90cm,2.10cm) {5};
+  \node[font=\large] at (3.30cm,1.50cm) {5};
+  \node[font=\large] at (3.90cm,1.50cm) {6};
+  \node[font=\large] at (4.50cm,1.50cm) {4};
+  \node[font=\large] at (0.30cm,0.90cm) {6};
+  \node[font=\large] at (0.90cm,0.90cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (5.10cm,0.90cm) {3};
+  \node[font=\large] at (0.30cm,0.30cm) {9};
+  \node[font=\large] at (1.50cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {7};
+  \node[font=\large] at (4.50cm,0.30cm) {5};
+  \node[font=\large] at (5.10cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#25 (Seed: 1705816275) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {2};
+  \node[font=\large] at (0.90cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (4.50cm,5.10cm) {9};
+  \node[font=\large] at (5.10cm,5.10cm) {4};
+  \node[font=\large] at (4.50cm,4.50cm) {1};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,3.90cm) {1};
+  \node[font=\large] at (3.90cm,3.90cm) {2};
+  \node[font=\large] at (2.70cm,3.30cm) {5};
+  \node[font=\large] at (3.30cm,3.30cm) {1};
+  \node[font=\large] at (3.90cm,3.30cm) {4};
+  \node[font=\large] at (4.50cm,3.30cm) {6};
+  \node[font=\large] at (5.10cm,3.30cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {2};
+  \node[font=\large] at (0.30cm,2.10cm) {6};
+  \node[font=\large] at (1.50cm,2.10cm) {9};
+  \node[font=\large] at (2.10cm,2.10cm) {7};
+  \node[font=\large] at (3.30cm,2.10cm) {2};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (0.30cm,1.50cm) {3};
+  \node[font=\large] at (0.90cm,1.50cm) {9};
+  \node[font=\large] at (2.10cm,1.50cm) {6};
+  \node[font=\large] at (2.70cm,1.50cm) {2};
+  \node[font=\large] at (3.30cm,1.50cm) {5};
+  \node[font=\large] at (4.50cm,1.50cm) {4};
+  \node[font=\large] at (5.10cm,1.50cm) {8};
+  \node[font=\large] at (0.90cm,0.90cm) {2};
+  \node[font=\large] at (1.50cm,0.90cm) {5};
+  \node[font=\large] at (3.30cm,0.90cm) {3};
+  \node[font=\large] at (3.90cm,0.90cm) {9};
+  \node[font=\large] at (4.50cm,0.90cm) {7};
+  \node[font=\large] at (5.10cm,0.90cm) {6};
+  \node[font=\large] at (0.30cm,0.30cm) {1};
+  \node[font=\large] at (1.50cm,0.30cm) {4};
+  \node[font=\large] at (2.10cm,0.30cm) {8};
+  \node[font=\large] at (3.30cm,0.30cm) {7};
+  \node[font=\large] at (3.90cm,0.30cm) {3};
+  \node[font=\large] at (5.10cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#26 (Seed: 1705816276) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {4};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (3.30cm,5.10cm) {2};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {4};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (0.90cm,3.90cm) {6};
+  \node[font=\large] at (2.70cm,3.90cm) {8};
+  \node[font=\large] at (4.50cm,3.90cm) {5};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {2};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {4};
+  \node[font=\large] at (3.90cm,2.70cm) {7};
+  \node[font=\large] at (5.10cm,2.70cm) {5};
+  \node[font=\large] at (0.30cm,2.10cm) {8};
+  \node[font=\large] at (0.90cm,2.10cm) {4};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (1.50cm,1.50cm) {3};
+  \node[font=\large] at (4.50cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (3.30cm,0.90cm) {7};
+  \node[font=\large] at (3.90cm,0.90cm) {5};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (1.50cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {4};
+  \node[font=\large] at (4.50cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#27 (Seed: 1705816277) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {4};
+  \node[font=\large] at (2.10cm,5.10cm) {6};
+  \node[font=\large] at (3.30cm,5.10cm) {8};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (1.50cm,4.50cm) {6};
+  \node[font=\large] at (2.70cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {1};
+  \node[font=\large] at (1.50cm,3.90cm) {7};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (4.50cm,3.90cm) {5};
+  \node[font=\large] at (5.10cm,3.90cm) {6};
+  \node[font=\large] at (3.30cm,3.30cm) {7};
+  \node[font=\large] at (5.10cm,3.30cm) {4};
+  \node[font=\large] at (0.90cm,2.70cm) {3};
+  \node[font=\large] at (2.70cm,2.70cm) {1};
+  \node[font=\large] at (3.90cm,2.70cm) {6};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {5};
+  \node[font=\large] at (2.70cm,2.10cm) {2};
+  \node[font=\large] at (4.50cm,2.10cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {5};
+  \node[font=\large] at (5.10cm,0.90cm) {8};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {7};
+  \node[font=\large] at (3.30cm,0.30cm) {6};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#28 (Seed: 1705816278) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {1};
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (2.10cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {7};
+  \node[font=\large] at (0.90cm,4.50cm) {5};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {1};
+  \node[font=\large] at (3.30cm,4.50cm) {9};
+  \node[font=\large] at (5.10cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {6};
+  \node[font=\large] at (1.50cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {5};
+  \node[font=\large] at (3.90cm,3.90cm) {7};
+  \node[font=\large] at (0.30cm,3.30cm) {8};
+  \node[font=\large] at (2.10cm,3.30cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {3};
+  \node[font=\large] at (0.30cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {1};
+  \node[font=\large] at (2.10cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.70cm) {2};
+  \node[font=\large] at (4.50cm,2.70cm) {6};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (1.50cm,2.10cm) {7};
+  \node[font=\large] at (2.70cm,2.10cm) {9};
+  \node[font=\large] at (3.90cm,2.10cm) {8};
+  \node[font=\large] at (4.50cm,2.10cm) {2};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.30cm,1.50cm) {3};
+  \node[font=\large] at (1.50cm,1.50cm) {8};
+  \node[font=\large] at (3.30cm,1.50cm) {7};
+  \node[font=\large] at (3.90cm,0.90cm) {2};
+  \node[font=\large] at (4.50cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {2};
+  \node[font=\large] at (0.90cm,0.30cm) {4};
+  \node[font=\large] at (2.10cm,0.30cm) {9};
+  \node[font=\large] at (2.70cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+  \node[font=\large] at (3.90cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#29 (Seed: 1705816279) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {2};
+  \node[font=\large] at (3.30cm,5.10cm) {5};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (0.30cm,4.50cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {2};
+  \node[font=\large] at (2.10cm,4.50cm) {1};
+  \node[font=\large] at (5.10cm,4.50cm) {9};
+  \node[font=\large] at (2.10cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {1};
+  \node[font=\large] at (4.50cm,3.90cm) {2};
+  \node[font=\large] at (0.30cm,3.30cm) {1};
+  \node[font=\large] at (2.10cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (0.30cm,2.70cm) {6};
+  \node[font=\large] at (3.30cm,2.70cm) {1};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {4};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {4};
+  \node[font=\large] at (3.90cm,2.10cm) {2};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (0.30cm,1.50cm) {7};
+  \node[font=\large] at (0.90cm,1.50cm) {3};
+  \node[font=\large] at (1.50cm,1.50cm) {6};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (0.30cm,0.90cm) {2};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {5};
+  \node[font=\large] at (3.30cm,0.90cm) {3};
+  \node[font=\large] at (0.30cm,0.30cm) {5};
+  \node[font=\large] at (1.50cm,0.30cm) {8};
+  \node[font=\large] at (2.10cm,0.30cm) {4};
+  \node[font=\large] at (4.50cm,0.30cm) {6};
+  \node[font=\large] at (5.10cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#30 (Seed: 1705816280) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {4};
+  \node[font=\large] at (0.30cm,4.50cm) {1};
+  \node[font=\large] at (2.70cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,4.50cm) {3};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (1.50cm,3.90cm) {3};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (4.50cm,3.90cm) {8};
+  \node[font=\large] at (2.10cm,3.30cm) {9};
+  \node[font=\large] at (2.70cm,3.30cm) {5};
+  \node[font=\large] at (3.90cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {4};
+  \node[font=\large] at (3.90cm,2.70cm) {3};
+  \node[font=\large] at (0.30cm,2.10cm) {6};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (5.10cm,2.10cm) {2};
+  \node[font=\large] at (0.30cm,1.50cm) {7};
+  \node[font=\large] at (2.70cm,1.50cm) {1};
+  \node[font=\large] at (3.30cm,1.50cm) {4};
+  \node[font=\large] at (1.50cm,0.90cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {1};
+  \node[font=\large] at (3.90cm,0.30cm) {4};
+  \node[font=\large] at (4.50cm,0.30cm) {3};
+  \node[font=\large] at (5.10cm,0.30cm) {6};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#31 (Seed: 1705816281) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {9};
+  \node[font=\large] at (2.10cm,5.10cm) {5};
+  \node[font=\large] at (2.70cm,5.10cm) {2};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (0.90cm,4.50cm) {1};
+  \node[font=\large] at (3.30cm,4.50cm) {3};
+  \node[font=\large] at (3.90cm,4.50cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.10cm,3.90cm) {9};
+  \node[font=\large] at (0.30cm,3.30cm) {3};
+  \node[font=\large] at (2.10cm,3.30cm) {8};
+  \node[font=\large] at (3.30cm,3.30cm) {2};
+  \node[font=\large] at (5.10cm,3.30cm) {6};
+  \node[font=\large] at (0.90cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.70cm) {6};
+  \node[font=\large] at (2.10cm,2.70cm) {7};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (0.90cm,1.50cm) {6};
+  \node[font=\large] at (2.10cm,1.50cm) {2};
+  \node[font=\large] at (2.70cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {7};
+  \node[font=\large] at (5.10cm,1.50cm) {5};
+  \node[font=\large] at (0.90cm,0.90cm) {9};
+  \node[font=\large] at (2.10cm,0.90cm) {4};
+  \node[font=\large] at (4.50cm,0.90cm) {6};
+  \node[font=\large] at (5.10cm,0.90cm) {2};
+  \node[font=\large] at (0.30cm,0.30cm) {5};
+  \node[font=\large] at (4.50cm,0.30cm) {8};
+  \node[font=\large] at (5.10cm,0.30cm) {9};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#32 (Seed: 1705816282) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (1.50cm,5.10cm) {2};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (0.30cm,4.50cm) {5};
+  \node[font=\large] at (2.70cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (0.90cm,3.30cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (4.50cm,3.30cm) {6};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (0.90cm,2.70cm) {8};
+  \node[font=\large] at (3.30cm,2.70cm) {3};
+  \node[font=\large] at (3.90cm,2.70cm) {5};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {1};
+  \node[font=\large] at (0.30cm,2.10cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (1.50cm,2.10cm) {5};
+  \node[font=\large] at (2.10cm,2.10cm) {8};
+  \node[font=\large] at (2.70cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {2};
+  \node[font=\large] at (1.50cm,1.50cm) {7};
+  \node[font=\large] at (2.10cm,1.50cm) {5};
+  \node[font=\large] at (3.90cm,1.50cm) {8};
+  \node[font=\large] at (4.50cm,1.50cm) {1};
+  \node[font=\large] at (0.30cm,0.90cm) {4};
+  \node[font=\large] at (0.90cm,0.90cm) {5};
+  \node[font=\large] at (1.50cm,0.90cm) {8};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (5.10cm,0.90cm) {7};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (1.50cm,0.30cm) {6};
+  \node[font=\large] at (3.90cm,0.30cm) {9};
+  \node[font=\large] at (4.50cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#33 (Seed: 1705816283) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {9};
+  \node[font=\large] at (1.50cm,5.10cm) {4};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,4.50cm) {4};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {1};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (4.50cm,3.90cm) {4};
+  \node[font=\large] at (0.30cm,3.30cm) {6};
+  \node[font=\large] at (1.50cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {1};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (3.90cm,3.30cm) {7};
+  \node[font=\large] at (4.50cm,3.30cm) {8};
+  \node[font=\large] at (5.10cm,3.30cm) {2};
+  \node[font=\large] at (1.50cm,2.70cm) {1};
+  \node[font=\large] at (3.30cm,2.70cm) {9};
+  \node[font=\large] at (3.90cm,2.70cm) {6};
+  \node[font=\large] at (4.50cm,2.70cm) {5};
+  \node[font=\large] at (0.30cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {5};
+  \node[font=\large] at (2.10cm,2.10cm) {6};
+  \node[font=\large] at (2.70cm,2.10cm) {3};
+  \node[font=\large] at (5.10cm,2.10cm) {4};
+  \node[font=\large] at (0.30cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,1.50cm) {2};
+  \node[font=\large] at (4.50cm,1.50cm) {9};
+  \node[font=\large] at (5.10cm,1.50cm) {7};
+  \node[font=\large] at (1.50cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {8};
+  \node[font=\large] at (3.90cm,0.90cm) {5};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (2.10cm,0.30cm) {3};
+  \node[font=\large] at (2.70cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#34 (Seed: 1705816284) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {4};
+  \node[font=\large] at (3.90cm,5.10cm) {7};
+  \node[font=\large] at (0.30cm,4.50cm) {1};
+  \node[font=\large] at (1.50cm,4.50cm) {8};
+  \node[font=\large] at (4.50cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {9};
+  \node[font=\large] at (0.90cm,3.90cm) {4};
+  \node[font=\large] at (2.10cm,3.90cm) {3};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {6};
+  \node[font=\large] at (0.90cm,3.30cm) {1};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {9};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (5.10cm,2.70cm) {4};
+  \node[font=\large] at (0.90cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {1};
+  \node[font=\large] at (5.10cm,2.10cm) {5};
+  \node[font=\large] at (0.30cm,1.50cm) {8};
+  \node[font=\large] at (1.50cm,1.50cm) {1};
+  \node[font=\large] at (3.30cm,1.50cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {5};
+  \node[font=\large] at (5.10cm,0.90cm) {8};
+  \node[font=\large] at (0.30cm,0.30cm) {6};
+  \node[font=\large] at (2.10cm,0.30cm) {8};
+  \node[font=\large] at (2.70cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#35 (Seed: 1705816285) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {1};
+  \node[font=\large] at (2.10cm,5.10cm) {5};
+  \node[font=\large] at (4.50cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {2};
+  \node[font=\large] at (1.50cm,4.50cm) {7};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {5};
+  \node[font=\large] at (2.10cm,3.90cm) {4};
+  \node[font=\large] at (2.70cm,3.90cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {6};
+  \node[font=\large] at (0.90cm,3.30cm) {9};
+  \node[font=\large] at (3.30cm,3.30cm) {8};
+  \node[font=\large] at (4.50cm,3.30cm) {5};
+  \node[font=\large] at (2.10cm,2.70cm) {3};
+  \node[font=\large] at (2.70cm,2.70cm) {9};
+  \node[font=\large] at (4.50cm,2.70cm) {1};
+  \node[font=\large] at (5.10cm,2.70cm) {2};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (3.30cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {8};
+  \node[font=\large] at (0.90cm,1.50cm) {4};
+  \node[font=\large] at (5.10cm,1.50cm) {8};
+  \node[font=\large] at (0.30cm,0.90cm) {8};
+  \node[font=\large] at (2.10cm,0.90cm) {7};
+  \node[font=\large] at (3.30cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (4.50cm,0.90cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (1.50cm,0.30cm) {6};
+  \node[font=\large] at (2.10cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#36 (Seed: 1705816286) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {9};
+  \node[font=\large] at (1.50cm,5.10cm) {1};
+  \node[font=\large] at (2.70cm,5.10cm) {3};
+  \node[font=\large] at (3.30cm,5.10cm) {6};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (0.30cm,4.50cm) {2};
+  \node[font=\large] at (1.50cm,4.50cm) {6};
+  \node[font=\large] at (2.10cm,4.50cm) {4};
+  \node[font=\large] at (3.30cm,4.50cm) {1};
+  \node[font=\large] at (3.90cm,4.50cm) {8};
+  \node[font=\large] at (0.30cm,3.90cm) {3};
+  \node[font=\large] at (3.30cm,3.90cm) {7};
+  \node[font=\large] at (5.10cm,3.90cm) {2};
+  \node[font=\large] at (0.30cm,3.30cm) {7};
+  \node[font=\large] at (0.90cm,3.30cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {6};
+  \node[font=\large] at (5.10cm,3.30cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {8};
+  \node[font=\large] at (4.50cm,2.70cm) {6};
+  \node[font=\large] at (5.10cm,2.70cm) {4};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (3.30cm,2.10cm) {5};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (4.50cm,2.10cm) {2};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.30cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {7};
+  \node[font=\large] at (3.30cm,1.50cm) {9};
+  \node[font=\large] at (3.90cm,1.50cm) {3};
+  \node[font=\large] at (5.10cm,1.50cm) {6};
+  \node[font=\large] at (0.30cm,0.90cm) {9};
+  \node[font=\large] at (0.90cm,0.90cm) {6};
+  \node[font=\large] at (3.90cm,0.90cm) {2};
+  \node[font=\large] at (4.50cm,0.90cm) {7};
+  \node[font=\large] at (2.10cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {2};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+  \node[font=\large] at (5.10cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#37 (Seed: 1705816287) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {4};
+  \node[font=\large] at (1.50cm,5.10cm) {2};
+  \node[font=\large] at (2.10cm,5.10cm) {1};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {5};
+  \node[font=\large] at (0.30cm,4.50cm) {6};
+  \node[font=\large] at (0.90cm,4.50cm) {5};
+  \node[font=\large] at (3.90cm,4.50cm) {1};
+  \node[font=\large] at (4.50cm,4.50cm) {4};
+  \node[font=\large] at (5.10cm,4.50cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {5};
+  \node[font=\large] at (3.90cm,3.90cm) {6};
+  \node[font=\large] at (1.50cm,3.30cm) {1};
+  \node[font=\large] at (3.90cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (2.70cm,2.70cm) {1};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (5.10cm,2.70cm) {8};
+  \node[font=\large] at (0.30cm,2.10cm) {2};
+  \node[font=\large] at (0.90cm,2.10cm) {3};
+  \node[font=\large] at (2.10cm,2.10cm) {9};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (0.30cm,1.50cm) {5};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {7};
+  \node[font=\large] at (0.30cm,0.90cm) {9};
+  \node[font=\large] at (1.50cm,0.90cm) {6};
+  \node[font=\large] at (2.10cm,0.90cm) {5};
+  \node[font=\large] at (2.70cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {8};
+  \node[font=\large] at (5.10cm,0.90cm) {4};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (2.10cm,0.30cm) {7};
+  \node[font=\large] at (2.70cm,0.30cm) {4};
+  \node[font=\large] at (5.10cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#38 (Seed: 1705816288) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {7};
+  \node[font=\large] at (2.70cm,5.10cm) {6};
+  \node[font=\large] at (5.10cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,4.50cm) {3};
+  \node[font=\large] at (2.70cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {6};
+  \node[font=\large] at (2.10cm,3.90cm) {1};
+  \node[font=\large] at (3.30cm,3.90cm) {4};
+  \node[font=\large] at (3.90cm,3.90cm) {7};
+  \node[font=\large] at (4.50cm,3.90cm) {9};
+  \node[font=\large] at (5.10cm,3.90cm) {3};
+  \node[font=\large] at (0.30cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {5};
+  \node[font=\large] at (2.70cm,3.30cm) {3};
+  \node[font=\large] at (3.30cm,3.30cm) {8};
+  \node[font=\large] at (5.10cm,3.30cm) {2};
+  \node[font=\large] at (1.50cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {6};
+  \node[font=\large] at (0.90cm,2.10cm) {3};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,1.50cm) {1};
+  \node[font=\large] at (0.90cm,0.90cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {8};
+  \node[font=\large] at (2.70cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {4};
+  \node[font=\large] at (0.30cm,0.30cm) {8};
+  \node[font=\large] at (1.50cm,0.30cm) {1};
+  \node[font=\large] at (3.30cm,0.30cm) {6};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#39 (Seed: 1705816289) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.70cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {5};
+  \node[font=\large] at (3.90cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {8};
+  \node[font=\large] at (0.30cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {6};
+  \node[font=\large] at (3.30cm,3.90cm) {2};
+  \node[font=\large] at (5.10cm,3.90cm) {1};
+  \node[font=\large] at (3.30cm,3.30cm) {1};
+  \node[font=\large] at (3.90cm,3.30cm) {2};
+  \node[font=\large] at (5.10cm,3.30cm) {6};
+  \node[font=\large] at (1.50cm,2.70cm) {1};
+  \node[font=\large] at (2.70cm,2.70cm) {3};
+  \node[font=\large] at (3.30cm,2.70cm) {6};
+  \node[font=\large] at (5.10cm,2.70cm) {5};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (2.10cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,1.50cm) {6};
+  \node[font=\large] at (2.70cm,1.50cm) {7};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {8};
+  \node[font=\large] at (5.10cm,1.50cm) {3};
+  \node[font=\large] at (0.30cm,0.90cm) {7};
+  \node[font=\large] at (1.50cm,0.90cm) {5};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+  \node[font=\large] at (5.10cm,0.30cm) {4};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#40 (Seed: 1705816290) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {5};
+  \node[font=\large] at (3.30cm,5.10cm) {4};
+  \node[font=\large] at (3.90cm,5.10cm) {1};
+  \node[font=\large] at (0.30cm,4.50cm) {4};
+  \node[font=\large] at (0.90cm,4.50cm) {2};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,4.50cm) {7};
+  \node[font=\large] at (4.50cm,4.50cm) {5};
+  \node[font=\large] at (5.10cm,4.50cm) {3};
+  \node[font=\large] at (0.30cm,3.90cm) {1};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (4.50cm,3.90cm) {8};
+  \node[font=\large] at (0.30cm,3.30cm) {5};
+  \node[font=\large] at (0.90cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {4};
+  \node[font=\large] at (3.90cm,3.30cm) {7};
+  \node[font=\large] at (1.50cm,2.70cm) {7};
+  \node[font=\large] at (2.10cm,2.70cm) {2};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (0.30cm,2.10cm) {2};
+  \node[font=\large] at (1.50cm,2.10cm) {6};
+  \node[font=\large] at (3.30cm,2.10cm) {1};
+  \node[font=\large] at (5.10cm,2.10cm) {5};
+  \node[font=\large] at (2.10cm,1.50cm) {4};
+  \node[font=\large] at (3.30cm,1.50cm) {8};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {1};
+  \node[font=\large] at (1.50cm,0.90cm) {4};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (3.30cm,0.90cm) {6};
+  \node[font=\large] at (3.90cm,0.90cm) {2};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (5.10cm,0.90cm) {7};
+  \node[font=\large] at (0.30cm,0.30cm) {6};
+  \node[font=\large] at (3.90cm,0.30cm) {5};
+  \node[font=\large] at (5.10cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#41 (Seed: 1705816291) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {1};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (5.10cm,5.10cm) {9};
+  \node[font=\large] at (2.10cm,4.50cm) {9};
+  \node[font=\large] at (2.70cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {4};
+  \node[font=\large] at (3.90cm,3.90cm) {8};
+  \node[font=\large] at (5.10cm,3.90cm) {5};
+  \node[font=\large] at (0.30cm,3.30cm) {7};
+  \node[font=\large] at (0.30cm,2.70cm) {1};
+  \node[font=\large] at (1.50cm,2.70cm) {5};
+  \node[font=\large] at (3.30cm,2.70cm) {8};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (0.30cm,2.10cm) {9};
+  \node[font=\large] at (1.50cm,2.10cm) {4};
+  \node[font=\large] at (2.10cm,2.10cm) {5};
+  \node[font=\large] at (2.70cm,2.10cm) {3};
+  \node[font=\large] at (3.30cm,2.10cm) {2};
+  \node[font=\large] at (4.50cm,2.10cm) {8};
+  \node[font=\large] at (5.10cm,2.10cm) {1};
+  \node[font=\large] at (1.50cm,1.50cm) {6};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (3.30cm,1.50cm) {3};
+  \node[font=\large] at (0.30cm,0.90cm) {2};
+  \node[font=\large] at (2.10cm,0.90cm) {6};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (4.50cm,0.90cm) {4};
+  \node[font=\large] at (5.10cm,0.90cm) {8};
+  \node[font=\large] at (0.90cm,0.30cm) {5};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+  \node[font=\large] at (2.10cm,0.30cm) {4};
+  \node[font=\large] at (2.70cm,0.30cm) {9};
+  \node[font=\large] at (3.30cm,0.30cm) {7};
+  \node[font=\large] at (4.50cm,0.30cm) {1};
+  \node[font=\large] at (5.10cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#42 (Seed: 1705816292) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {2};
+  \node[font=\large] at (0.90cm,4.50cm) {1};
+  \node[font=\large] at (2.10cm,4.50cm) {6};
+  \node[font=\large] at (4.50cm,4.50cm) {8};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {5};
+  \node[font=\large] at (3.30cm,3.90cm) {7};
+  \node[font=\large] at (0.30cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {5};
+  \node[font=\large] at (3.90cm,3.30cm) {4};
+  \node[font=\large] at (4.50cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,2.70cm) {2};
+  \node[font=\large] at (3.90cm,2.70cm) {9};
+  \node[font=\large] at (4.50cm,2.70cm) {5};
+  \node[font=\large] at (5.10cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.10cm) {5};
+  \node[font=\large] at (3.30cm,2.10cm) {1};
+  \node[font=\large] at (2.10cm,1.50cm) {7};
+  \node[font=\large] at (2.70cm,1.50cm) {8};
+  \node[font=\large] at (0.30cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {7};
+  \node[font=\large] at (3.30cm,0.90cm) {6};
+  \node[font=\large] at (5.10cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.30cm) {5};
+  \node[font=\large] at (1.50cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#43 (Seed: 1705816293) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (2.10cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {3};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (0.90cm,4.50cm) {4};
+  \node[font=\large] at (2.70cm,4.50cm) {8};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.30cm) {4};
+  \node[font=\large] at (0.30cm,2.70cm) {8};
+  \node[font=\large] at (0.90cm,2.70cm) {1};
+  \node[font=\large] at (1.50cm,2.70cm) {4};
+  \node[font=\large] at (3.90cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,2.10cm) {8};
+  \node[font=\large] at (4.50cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {6};
+  \node[font=\large] at (1.50cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,1.50cm) {9};
+  \node[font=\large] at (5.10cm,1.50cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (2.10cm,0.30cm) {2};
+  \node[font=\large] at (3.90cm,0.30cm) {6};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#44 (Seed: 1705816294) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {9};
+  \node[font=\large] at (1.50cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {2};
+  \node[font=\large] at (3.30cm,5.10cm) {7};
+  \node[font=\large] at (3.90cm,5.10cm) {1};
+  \node[font=\large] at (0.30cm,4.50cm) {2};
+  \node[font=\large] at (0.90cm,4.50cm) {1};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (0.30cm,3.90cm) {7};
+  \node[font=\large] at (2.70cm,3.90cm) {5};
+  \node[font=\large] at (3.30cm,3.90cm) {1};
+  \node[font=\large] at (0.90cm,3.30cm) {2};
+  \node[font=\large] at (2.10cm,3.30cm) {3};
+  \node[font=\large] at (2.70cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {9};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {8};
+  \node[font=\large] at (2.70cm,2.70cm) {6};
+  \node[font=\large] at (3.90cm,2.70cm) {3};
+  \node[font=\large] at (0.30cm,2.10cm) {1};
+  \node[font=\large] at (0.90cm,2.10cm) {3};
+  \node[font=\large] at (2.10cm,2.10cm) {7};
+  \node[font=\large] at (2.70cm,2.10cm) {4};
+  \node[font=\large] at (3.30cm,2.10cm) {5};
+  \node[font=\large] at (3.90cm,2.10cm) {8};
+  \node[font=\large] at (2.70cm,1.50cm) {7};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {3};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (0.30cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.90cm) {4};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {8};
+  \node[font=\large] at (5.10cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.30cm) {6};
+  \node[font=\large] at (5.10cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#45 (Seed: 1705816295) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (3.90cm,5.10cm) {8};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (0.90cm,4.50cm) {8};
+  \node[font=\large] at (2.10cm,4.50cm) {4};
+  \node[font=\large] at (3.90cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {3};
+  \node[font=\large] at (0.30cm,3.90cm) {5};
+  \node[font=\large] at (0.90cm,3.90cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.90cm) {7};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {1};
+  \node[font=\large] at (0.90cm,3.30cm) {7};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (3.90cm,3.30cm) {4};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {9};
+  \node[font=\large] at (0.30cm,2.10cm) {4};
+  \node[font=\large] at (2.10cm,2.10cm) {5};
+  \node[font=\large] at (3.30cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.30cm,1.50cm) {6};
+  \node[font=\large] at (0.90cm,1.50cm) {4};
+  \node[font=\large] at (2.10cm,1.50cm) {8};
+  \node[font=\large] at (2.70cm,1.50cm) {5};
+  \node[font=\large] at (0.30cm,0.90cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {5};
+  \node[font=\large] at (2.10cm,0.90cm) {6};
+  \node[font=\large] at (2.70cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {7};
+  \node[font=\large] at (4.50cm,0.90cm) {1};
+  \node[font=\large] at (0.30cm,0.30cm) {7};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+  \node[font=\large] at (2.70cm,0.30cm) {4};
+  \node[font=\large] at (4.50cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#46 (Seed: 1705816296) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (3.90cm,5.10cm) {9};
+  \node[font=\large] at (4.50cm,5.10cm) {3};
+  \node[font=\large] at (0.30cm,4.50cm) {9};
+  \node[font=\large] at (0.90cm,4.50cm) {8};
+  \node[font=\large] at (1.50cm,4.50cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {8};
+  \node[font=\large] at (0.30cm,3.30cm) {5};
+  \node[font=\large] at (1.50cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {2};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (1.50cm,2.70cm) {4};
+  \node[font=\large] at (2.10cm,2.70cm) {5};
+  \node[font=\large] at (4.50cm,2.70cm) {7};
+  \node[font=\large] at (2.10cm,2.10cm) {3};
+  \node[font=\large] at (3.30cm,2.10cm) {7};
+  \node[font=\large] at (4.50cm,2.10cm) {5};
+  \node[font=\large] at (1.50cm,1.50cm) {3};
+  \node[font=\large] at (2.70cm,1.50cm) {7};
+  \node[font=\large] at (3.30cm,1.50cm) {4};
+  \node[font=\large] at (3.90cm,1.50cm) {5};
+  \node[font=\large] at (0.90cm,0.90cm) {1};
+  \node[font=\large] at (1.50cm,0.90cm) {9};
+  \node[font=\large] at (3.30cm,0.90cm) {5};
+  \node[font=\large] at (3.90cm,0.90cm) {4};
+  \node[font=\large] at (1.50cm,0.30cm) {5};
+  \node[font=\large] at (2.70cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {1};
+  \node[font=\large] at (3.90cm,0.30cm) {7};
+  \node[font=\large] at (4.50cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#47 (Seed: 1705816297) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {2};
+  \node[font=\large] at (3.30cm,5.10cm) {1};
+  \node[font=\large] at (3.90cm,5.10cm) {4};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (2.10cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {8};
+  \node[font=\large] at (3.30cm,3.90cm) {9};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (0.30cm,3.30cm) {9};
+  \node[font=\large] at (1.50cm,3.30cm) {1};
+  \node[font=\large] at (2.70cm,3.30cm) {6};
+  \node[font=\large] at (3.30cm,3.30cm) {3};
+  \node[font=\large] at (4.50cm,2.70cm) {8};
+  \node[font=\large] at (0.30cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {6};
+  \node[font=\large] at (2.10cm,2.10cm) {1};
+  \node[font=\large] at (3.30cm,2.10cm) {8};
+  \node[font=\large] at (0.30cm,1.50cm) {8};
+  \node[font=\large] at (0.90cm,1.50cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {3};
+  \node[font=\large] at (3.30cm,1.50cm) {6};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,0.90cm) {9};
+  \node[font=\large] at (1.50cm,0.90cm) {4};
+  \node[font=\large] at (5.10cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.30cm) {6};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (2.70cm,0.30cm) {1};
+  \node[font=\large] at (3.30cm,0.30cm) {4};
+  \node[font=\large] at (4.50cm,0.30cm) {9};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#48 (Seed: 1705816298) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {9};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {2};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (5.10cm,5.10cm) {6};
+  \node[font=\large] at (0.30cm,4.50cm) {4};
+  \node[font=\large] at (1.50cm,4.50cm) {3};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (3.30cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {8};
+  \node[font=\large] at (1.50cm,3.90cm) {7};
+  \node[font=\large] at (4.50cm,3.90cm) {5};
+  \node[font=\large] at (0.90cm,3.30cm) {8};
+  \node[font=\large] at (4.50cm,3.30cm) {6};
+  \node[font=\large] at (5.10cm,3.30cm) {7};
+  \node[font=\large] at (0.30cm,2.70cm) {9};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (1.50cm,2.70cm) {5};
+  \node[font=\large] at (2.10cm,2.70cm) {2};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.10cm) {4};
+  \node[font=\large] at (2.70cm,2.10cm) {8};
+  \node[font=\large] at (4.50cm,2.10cm) {2};
+  \node[font=\large] at (5.10cm,2.10cm) {9};
+  \node[font=\large] at (0.90cm,1.50cm) {4};
+  \node[font=\large] at (2.70cm,1.50cm) {9};
+  \node[font=\large] at (3.30cm,1.50cm) {3};
+  \node[font=\large] at (5.10cm,1.50cm) {1};
+  \node[font=\large] at (0.90cm,0.90cm) {7};
+  \node[font=\large] at (1.50cm,0.90cm) {6};
+  \node[font=\large] at (2.70cm,0.90cm) {1};
+  \node[font=\large] at (3.30cm,0.90cm) {2};
+  \node[font=\large] at (4.50cm,0.90cm) {3};
+  \node[font=\large] at (5.10cm,0.90cm) {5};
+  \node[font=\large] at (0.30cm,0.30cm) {3};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (2.70cm,0.30cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+  \node[font=\large] at (5.10cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#49 (Seed: 1705816299) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {1};
+  \node[font=\large] at (1.50cm,5.10cm) {7};
+  \node[font=\large] at (2.10cm,5.10cm) {2};
+  \node[font=\large] at (2.70cm,5.10cm) {4};
+  \node[font=\large] at (3.90cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {9};
+  \node[font=\large] at (3.30cm,4.50cm) {8};
+  \node[font=\large] at (3.90cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {4};
+  \node[font=\large] at (0.30cm,3.90cm) {8};
+  \node[font=\large] at (0.90cm,3.90cm) {4};
+  \node[font=\large] at (1.50cm,3.90cm) {2};
+  \node[font=\large] at (3.90cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {7};
+  \node[font=\large] at (0.30cm,3.30cm) {7};
+  \node[font=\large] at (1.50cm,3.30cm) {4};
+  \node[font=\large] at (2.10cm,3.30cm) {8};
+  \node[font=\large] at (3.30cm,3.30cm) {1};
+  \node[font=\large] at (4.50cm,3.30cm) {2};
+  \node[font=\large] at (5.10cm,3.30cm) {3};
+  \node[font=\large] at (1.50cm,2.70cm) {6};
+  \node[font=\large] at (2.70cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {5};
+  \node[font=\large] at (3.90cm,2.70cm) {4};
+  \node[font=\large] at (4.50cm,2.70cm) {8};
+  \node[font=\large] at (0.30cm,2.10cm) {1};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {7};
+  \node[font=\large] at (3.30cm,1.50cm) {7};
+  \node[font=\large] at (0.30cm,0.90cm) {5};
+  \node[font=\large] at (1.50cm,0.90cm) {1};
+  \node[font=\large] at (3.30cm,0.90cm) {6};
+  \node[font=\large] at (3.90cm,0.90cm) {3};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (1.50cm,0.30cm) {3};
+  \node[font=\large] at (2.10cm,0.30cm) {5};
+  \node[font=\large] at (2.70cm,0.30cm) {8};
+  \node[font=\large] at (3.30cm,0.30cm) {4};
+  \node[font=\large] at (3.90cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#50 (Seed: 1705816300) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (3.30cm,5.10cm) {1};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (0.90cm,4.50cm) {4};
+  \node[font=\large] at (2.10cm,4.50cm) {5};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (3.90cm,4.50cm) {6};
+  \node[font=\large] at (5.10cm,4.50cm) {1};
+  \node[font=\large] at (1.50cm,3.90cm) {7};
+  \node[font=\large] at (2.70cm,3.90cm) {8};
+  \node[font=\large] at (3.90cm,3.90cm) {2};
+  \node[font=\large] at (4.50cm,3.90cm) {4};
+  \node[font=\large] at (0.30cm,3.30cm) {6};
+  \node[font=\large] at (0.90cm,3.30cm) {7};
+  \node[font=\large] at (2.10cm,3.30cm) {4};
+  \node[font=\large] at (5.10cm,3.30cm) {3};
+  \node[font=\large] at (3.30cm,2.70cm) {7};
+  \node[font=\large] at (5.10cm,2.70cm) {6};
+  \node[font=\large] at (0.30cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,2.10cm) {9};
+  \node[font=\large] at (2.70cm,2.10cm) {6};
+  \node[font=\large] at (3.90cm,2.10cm) {4};
+  \node[font=\large] at (2.70cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {3};
+  \node[font=\large] at (5.10cm,1.50cm) {2};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (3.30cm,0.90cm) {6};
+  \node[font=\large] at (4.50cm,0.90cm) {5};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (3.30cm,0.30cm) {4};
+  \node[font=\large] at (3.90cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#51 (Seed: 1705816301) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {4};
+  \node[font=\large] at (0.90cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,5.10cm) {9};
+  \node[font=\large] at (2.70cm,5.10cm) {6};
+  \node[font=\large] at (3.30cm,4.50cm) {7};
+  \node[font=\large] at (3.90cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (0.90cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {7};
+  \node[font=\large] at (0.30cm,3.30cm) {2};
+  \node[font=\large] at (2.10cm,3.30cm) {7};
+  \node[font=\large] at (3.30cm,3.30cm) {6};
+  \node[font=\large] at (5.10cm,3.30cm) {5};
+  \node[font=\large] at (2.10cm,2.70cm) {5};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (2.70cm,2.10cm) {1};
+  \node[font=\large] at (3.30cm,2.10cm) {4};
+  \node[font=\large] at (0.30cm,1.50cm) {3};
+  \node[font=\large] at (0.90cm,1.50cm) {5};
+  \node[font=\large] at (5.10cm,1.50cm) {8};
+  \node[font=\large] at (1.50cm,0.90cm) {1};
+  \node[font=\large] at (2.10cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {2};
+  \node[font=\large] at (0.30cm,0.30cm) {7};
+  \node[font=\large] at (1.50cm,0.30cm) {2};
+  \node[font=\large] at (2.70cm,0.30cm) {5};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#52 (Seed: 1705816302) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {5};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (2.70cm,5.10cm) {6};
+  \node[font=\large] at (3.30cm,5.10cm) {4};
+  \node[font=\large] at (3.90cm,5.10cm) {7};
+  \node[font=\large] at (4.50cm,5.10cm) {2};
+  \node[font=\large] at (5.10cm,5.10cm) {9};
+  \node[font=\large] at (0.90cm,4.50cm) {9};
+  \node[font=\large] at (1.50cm,4.50cm) {2};
+  \node[font=\large] at (2.10cm,4.50cm) {7};
+  \node[font=\large] at (3.30cm,4.50cm) {8};
+  \node[font=\large] at (4.50cm,4.50cm) {4};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {4};
+  \node[font=\large] at (0.90cm,3.90cm) {3};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (4.50cm,3.90cm) {1};
+  \node[font=\large] at (0.30cm,3.30cm) {5};
+  \node[font=\large] at (5.10cm,3.30cm) {4};
+  \node[font=\large] at (0.30cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.70cm) {6};
+  \node[font=\large] at (2.10cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {1};
+  \node[font=\large] at (4.50cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.10cm) {8};
+  \node[font=\large] at (4.50cm,2.10cm) {3};
+  \node[font=\large] at (1.50cm,1.50cm) {6};
+  \node[font=\large] at (3.30cm,1.50cm) {9};
+  \node[font=\large] at (5.10cm,1.50cm) {3};
+  \node[font=\large] at (0.30cm,0.90cm) {9};
+  \node[font=\large] at (2.10cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {6};
+  \node[font=\large] at (5.10cm,0.90cm) {2};
+  \node[font=\large] at (0.30cm,0.30cm) {7};
+  \node[font=\large] at (0.90cm,0.30cm) {2};
+  \node[font=\large] at (2.70cm,0.30cm) {5};
+  \node[font=\large] at (3.30cm,0.30cm) {6};
+  \node[font=\large] at (5.10cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#53 (Seed: 1705816303) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {7};
+  \node[font=\large] at (3.30cm,5.10cm) {2};
+  \node[font=\large] at (4.50cm,5.10cm) {3};
+  \node[font=\large] at (0.30cm,4.50cm) {8};
+  \node[font=\large] at (2.10cm,4.50cm) {6};
+  \node[font=\large] at (2.70cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {7};
+  \node[font=\large] at (3.90cm,4.50cm) {2};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (0.30cm,3.90cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {4};
+  \node[font=\large] at (3.30cm,3.90cm) {8};
+  \node[font=\large] at (3.90cm,3.90cm) {6};
+  \node[font=\large] at (1.50cm,3.30cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {7};
+  \node[font=\large] at (3.90cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {9};
+  \node[font=\large] at (0.90cm,2.70cm) {9};
+  \node[font=\large] at (1.50cm,2.70cm) {2};
+  \node[font=\large] at (2.10cm,2.70cm) {8};
+  \node[font=\large] at (2.70cm,2.70cm) {1};
+  \node[font=\large] at (3.90cm,2.70cm) {7};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {1};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (3.30cm,2.10cm) {6};
+  \node[font=\large] at (3.90cm,2.10cm) {3};
+  \node[font=\large] at (4.50cm,2.10cm) {8};
+  \node[font=\large] at (0.90cm,1.50cm) {2};
+  \node[font=\large] at (2.70cm,1.50cm) {8};
+  \node[font=\large] at (4.50cm,1.50cm) {6};
+  \node[font=\large] at (5.10cm,1.50cm) {7};
+  \node[font=\large] at (0.30cm,0.90cm) {1};
+  \node[font=\large] at (0.90cm,0.90cm) {3};
+  \node[font=\large] at (1.50cm,0.90cm) {7};
+  \node[font=\large] at (4.50cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.30cm) {9};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#54 (Seed: 1705816304) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {6};
+  \node[font=\large] at (2.10cm,5.10cm) {9};
+  \node[font=\large] at (0.90cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {2};
+  \node[font=\large] at (0.30cm,3.90cm) {7};
+  \node[font=\large] at (2.70cm,3.90cm) {4};
+  \node[font=\large] at (3.30cm,3.90cm) {6};
+  \node[font=\large] at (3.90cm,3.90cm) {2};
+  \node[font=\large] at (2.10cm,3.30cm) {8};
+  \node[font=\large] at (2.70cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {7};
+  \node[font=\large] at (0.30cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.10cm) {9};
+  \node[font=\large] at (2.70cm,2.10cm) {1};
+  \node[font=\large] at (3.30cm,2.10cm) {7};
+  \node[font=\large] at (3.90cm,2.10cm) {6};
+  \node[font=\large] at (4.50cm,2.10cm) {3};
+  \node[font=\large] at (5.10cm,2.10cm) {5};
+  \node[font=\large] at (3.30cm,1.50cm) {3};
+  \node[font=\large] at (3.90cm,1.50cm) {5};
+  \node[font=\large] at (4.50cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,0.90cm) {7};
+  \node[font=\large] at (2.10cm,0.90cm) {6};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+  \node[font=\large] at (3.90cm,0.30cm) {1};
+  \node[font=\large] at (4.50cm,0.30cm) {2};
+  \node[font=\large] at (5.10cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#55 (Seed: 1705816305) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {7};
+  \node[font=\large] at (2.70cm,5.10cm) {1};
+  \node[font=\large] at (3.90cm,5.10cm) {2};
+  \node[font=\large] at (4.50cm,5.10cm) {9};
+  \node[font=\large] at (2.10cm,4.50cm) {3};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (5.10cm,4.50cm) {5};
+  \node[font=\large] at (1.50cm,3.90cm) {4};
+  \node[font=\large] at (2.10cm,3.90cm) {8};
+  \node[font=\large] at (5.10cm,3.90cm) {7};
+  \node[font=\large] at (1.50cm,3.30cm) {3};
+  \node[font=\large] at (2.10cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {8};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (1.50cm,2.70cm) {9};
+  \node[font=\large] at (3.30cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {6};
+  \node[font=\large] at (3.90cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,0.90cm) {2};
+  \node[font=\large] at (3.30cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {4};
+  \node[font=\large] at (4.50cm,0.90cm) {6};
+  \node[font=\large] at (0.30cm,0.30cm) {6};
+  \node[font=\large] at (2.70cm,0.30cm) {8};
+  \node[font=\large] at (3.30cm,0.30cm) {5};
+  \node[font=\large] at (5.10cm,0.30cm) {1};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#56 (Seed: 1705816306) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\newpage
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {8};
+  \node[font=\large] at (3.30cm,5.10cm) {3};
+  \node[font=\large] at (4.50cm,5.10cm) {7};
+  \node[font=\large] at (0.30cm,4.50cm) {9};
+  \node[font=\large] at (1.50cm,4.50cm) {1};
+  \node[font=\large] at (2.10cm,4.50cm) {2};
+  \node[font=\large] at (3.30cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {6};
+  \node[font=\large] at (0.30cm,3.90cm) {3};
+  \node[font=\large] at (1.50cm,3.90cm) {8};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {6};
+  \node[font=\large] at (4.50cm,3.90cm) {1};
+  \node[font=\large] at (5.10cm,3.90cm) {2};
+  \node[font=\large] at (0.30cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,3.30cm) {6};
+  \node[font=\large] at (2.70cm,3.30cm) {2};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (0.90cm,2.70cm) {9};
+  \node[font=\large] at (1.50cm,2.70cm) {7};
+  \node[font=\large] at (2.10cm,2.70cm) {3};
+  \node[font=\large] at (2.70cm,2.70cm) {8};
+  \node[font=\large] at (3.90cm,2.70cm) {6};
+  \node[font=\large] at (3.30cm,2.10cm) {9};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.30cm,1.50cm) {1};
+  \node[font=\large] at (0.90cm,1.50cm) {5};
+  \node[font=\large] at (2.70cm,1.50cm) {6};
+  \node[font=\large] at (3.90cm,1.50cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {5};
+  \node[font=\large] at (3.30cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {1};
+  \node[font=\large] at (0.90cm,0.30cm) {8};
+  \node[font=\large] at (1.50cm,0.30cm) {9};
+  \node[font=\large] at (2.10cm,0.30cm) {1};
+  \node[font=\large] at (2.70cm,0.30cm) {3};
+  \node[font=\large] at (3.30cm,0.30cm) {7};
+  \node[font=\large] at (3.90cm,0.30cm) {2};
+  \node[font=\large] at (5.10cm,0.30cm) {5};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#57 (Seed: 1705816307) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (2.10cm,5.10cm) {3};
+  \node[font=\large] at (3.30cm,5.10cm) {5};
+  \node[font=\large] at (3.90cm,5.10cm) {1};
+  \node[font=\large] at (5.10cm,5.10cm) {6};
+  \node[font=\large] at (0.30cm,4.50cm) {6};
+  \node[font=\large] at (0.90cm,4.50cm) {5};
+  \node[font=\large] at (2.10cm,4.50cm) {7};
+  \node[font=\large] at (2.70cm,4.50cm) {1};
+  \node[font=\large] at (3.30cm,4.50cm) {9};
+  \node[font=\large] at (4.50cm,4.50cm) {2};
+  \node[font=\large] at (0.30cm,3.90cm) {1};
+  \node[font=\large] at (0.90cm,3.90cm) {7};
+  \node[font=\large] at (2.10cm,3.90cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {8};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (0.30cm,3.30cm) {2};
+  \node[font=\large] at (0.90cm,3.30cm) {9};
+  \node[font=\large] at (2.10cm,3.30cm) {5};
+  \node[font=\large] at (2.70cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,2.70cm) {3};
+  \node[font=\large] at (1.50cm,2.70cm) {8};
+  \node[font=\large] at (2.70cm,2.70cm) {7};
+  \node[font=\large] at (3.30cm,2.70cm) {6};
+  \node[font=\large] at (4.50cm,2.70cm) {5};
+  \node[font=\large] at (0.30cm,2.10cm) {5};
+  \node[font=\large] at (0.90cm,2.10cm) {1};
+  \node[font=\large] at (2.10cm,2.10cm) {4};
+  \node[font=\large] at (4.50cm,2.10cm) {3};
+  \node[font=\large] at (5.10cm,2.10cm) {8};
+  \node[font=\large] at (0.30cm,1.50cm) {7};
+  \node[font=\large] at (0.90cm,1.50cm) {6};
+  \node[font=\large] at (3.30cm,1.50cm) {4};
+  \node[font=\large] at (5.10cm,1.50cm) {3};
+  \node[font=\large] at (0.90cm,0.90cm) {2};
+  \node[font=\large] at (3.90cm,0.90cm) {6};
+  \node[font=\large] at (4.50cm,0.90cm) {4};
+  \node[font=\large] at (1.50cm,0.30cm) {5};
+  \node[font=\large] at (3.90cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#58 (Seed: 1705816308) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {7};
+  \node[font=\large] at (1.50cm,5.10cm) {8};
+  \node[font=\large] at (3.30cm,5.10cm) {4};
+  \node[font=\large] at (0.30cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {9};
+  \node[font=\large] at (3.90cm,4.50cm) {1};
+  \node[font=\large] at (0.90cm,3.90cm) {1};
+  \node[font=\large] at (2.70cm,3.90cm) {7};
+  \node[font=\large] at (3.90cm,3.90cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {1};
+  \node[font=\large] at (3.30cm,3.30cm) {7};
+  \node[font=\large] at (4.50cm,3.30cm) {2};
+  \node[font=\large] at (5.10cm,3.30cm) {6};
+  \node[font=\large] at (1.50cm,2.70cm) {2};
+  \node[font=\large] at (3.30cm,2.70cm) {8};
+  \node[font=\large] at (5.10cm,2.70cm) {7};
+  \node[font=\large] at (1.50cm,2.10cm) {6};
+  \node[font=\large] at (2.10cm,2.10cm) {2};
+  \node[font=\large] at (2.70cm,2.10cm) {5};
+  \node[font=\large] at (3.90cm,2.10cm) {9};
+  \node[font=\large] at (2.70cm,0.90cm) {8};
+  \node[font=\large] at (3.90cm,0.90cm) {3};
+  \node[font=\large] at (1.50cm,0.30cm) {7};
+  \node[font=\large] at (2.10cm,0.30cm) {9};
+  \node[font=\large] at (4.50cm,0.30cm) {6};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#59 (Seed: 1705816309) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (2.10cm,5.10cm) {2};
+  \node[font=\large] at (3.90cm,5.10cm) {3};
+  \node[font=\large] at (4.50cm,5.10cm) {8};
+  \node[font=\large] at (1.50cm,4.50cm) {5};
+  \node[font=\large] at (2.10cm,4.50cm) {8};
+  \node[font=\large] at (2.70cm,4.50cm) {7};
+  \node[font=\large] at (5.10cm,4.50cm) {4};
+  \node[font=\large] at (0.30cm,3.90cm) {8};
+  \node[font=\large] at (0.90cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.90cm) {9};
+  \node[font=\large] at (3.30cm,3.90cm) {1};
+  \node[font=\large] at (3.90cm,3.90cm) {5};
+  \node[font=\large] at (4.50cm,3.90cm) {7};
+  \node[font=\large] at (5.10cm,3.90cm) {2};
+  \node[font=\large] at (0.90cm,3.30cm) {4};
+  \node[font=\large] at (2.70cm,3.30cm) {2};
+  \node[font=\large] at (4.50cm,3.30cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {7};
+  \node[font=\large] at (3.90cm,2.70cm) {6};
+  \node[font=\large] at (4.50cm,2.70cm) {4};
+  \node[font=\large] at (3.30cm,2.10cm) {4};
+  \node[font=\large] at (3.90cm,2.10cm) {1};
+  \node[font=\large] at (2.10cm,1.50cm) {1};
+  \node[font=\large] at (3.30cm,1.50cm) {2};
+  \node[font=\large] at (1.50cm,0.90cm) {2};
+  \node[font=\large] at (2.70cm,0.90cm) {3};
+  \node[font=\large] at (4.50cm,0.90cm) {6};
+  \node[font=\large] at (0.90cm,0.30cm) {9};
+  \node[font=\large] at (1.50cm,0.30cm) {1};
+  \node[font=\large] at (3.30cm,0.30cm) {8};
+  \node[font=\large] at (5.10cm,0.30cm) {7};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#60 (Seed: 1705816310) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {4};
+  \node[font=\large] at (1.50cm,5.10cm) {3};
+  \node[font=\large] at (2.10cm,5.10cm) {2};
+  \node[font=\large] at (3.90cm,5.10cm) {1};
+  \node[font=\large] at (0.30cm,4.50cm) {5};
+  \node[font=\large] at (0.90cm,4.50cm) {2};
+  \node[font=\large] at (1.50cm,4.50cm) {7};
+  \node[font=\large] at (2.10cm,4.50cm) {1};
+  \node[font=\large] at (3.30cm,4.50cm) {8};
+  \node[font=\large] at (5.10cm,4.50cm) {6};
+  \node[font=\large] at (2.10cm,3.90cm) {5};
+  \node[font=\large] at (3.30cm,3.90cm) {3};
+  \node[font=\large] at (3.90cm,3.90cm) {2};
+  \node[font=\large] at (4.50cm,3.90cm) {7};
+  \node[font=\large] at (0.90cm,3.30cm) {9};
+  \node[font=\large] at (2.70cm,3.30cm) {1};
+  \node[font=\large] at (3.30cm,3.30cm) {4};
+  \node[font=\large] at (3.90cm,3.30cm) {3};
+  \node[font=\large] at (5.10cm,3.30cm) {5};
+  \node[font=\large] at (0.30cm,2.70cm) {3};
+  \node[font=\large] at (2.10cm,2.70cm) {8};
+  \node[font=\large] at (4.50cm,2.70cm) {9};
+  \node[font=\large] at (0.30cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,2.10cm) {9};
+  \node[font=\large] at (3.30cm,2.10cm) {5};
+  \node[font=\large] at (3.90cm,2.10cm) {8};
+  \node[font=\large] at (0.30cm,1.50cm) {9};
+  \node[font=\large] at (1.50cm,1.50cm) {5};
+  \node[font=\large] at (2.10cm,1.50cm) {3};
+  \node[font=\large] at (2.70cm,1.50cm) {2};
+  \node[font=\large] at (3.30cm,1.50cm) {1};
+  \node[font=\large] at (5.10cm,1.50cm) {4};
+  \node[font=\large] at (1.50cm,0.90cm) {2};
+  \node[font=\large] at (2.10cm,0.90cm) {4};
+  \node[font=\large] at (3.30cm,0.90cm) {9};
+  \node[font=\large] at (2.70cm,0.30cm) {5};
+  \node[font=\large] at (3.90cm,0.30cm) {9};
+  \node[font=\large] at (4.50cm,0.30cm) {8};
+  \node[font=\large] at (5.10cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#61 (Seed: 1705816311) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {3};
+  \node[font=\large] at (2.10cm,5.10cm) {1};
+  \node[font=\large] at (3.90cm,5.10cm) {6};
+  \node[font=\large] at (5.10cm,5.10cm) {2};
+  \node[font=\large] at (0.30cm,4.50cm) {1};
+  \node[font=\large] at (2.70cm,4.50cm) {3};
+  \node[font=\large] at (3.30cm,4.50cm) {8};
+  \node[font=\large] at (3.90cm,4.50cm) {5};
+  \node[font=\large] at (4.50cm,4.50cm) {9};
+  \node[font=\large] at (0.30cm,3.90cm) {6};
+  \node[font=\large] at (2.70cm,3.90cm) {2};
+  \node[font=\large] at (3.30cm,3.90cm) {7};
+  \node[font=\large] at (3.90cm,3.90cm) {3};
+  \node[font=\large] at (4.50cm,3.90cm) {4};
+  \node[font=\large] at (0.30cm,3.30cm) {8};
+  \node[font=\large] at (0.90cm,3.30cm) {3};
+  \node[font=\large] at (1.50cm,3.30cm) {6};
+  \node[font=\large] at (2.10cm,3.30cm) {5};
+  \node[font=\large] at (2.70cm,3.30cm) {4};
+  \node[font=\large] at (3.30cm,3.30cm) {2};
+  \node[font=\large] at (3.90cm,3.30cm) {7};
+  \node[font=\large] at (0.30cm,2.70cm) {2};
+  \node[font=\large] at (0.90cm,2.70cm) {5};
+  \node[font=\large] at (1.50cm,2.70cm) {9};
+  \node[font=\large] at (2.70cm,2.70cm) {7};
+  \node[font=\large] at (5.10cm,2.70cm) {3};
+  \node[font=\large] at (0.90cm,2.10cm) {7};
+  \node[font=\large] at (2.10cm,2.10cm) {3};
+  \node[font=\large] at (3.90cm,2.10cm) {8};
+  \node[font=\large] at (5.10cm,2.10cm) {5};
+  \node[font=\large] at (0.30cm,1.50cm) {9};
+  \node[font=\large] at (4.50cm,1.50cm) {3};
+  \node[font=\large] at (0.30cm,0.90cm) {5};
+  \node[font=\large] at (0.90cm,0.90cm) {6};
+  \node[font=\large] at (2.70cm,0.90cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {9};
+  \node[font=\large] at (5.10cm,0.90cm) {8};
+  \node[font=\large] at (2.10cm,0.30cm) {4};
+  \node[font=\large] at (3.90cm,0.30cm) {2};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#62 (Seed: 1705816312) | 2025-12-04 20:02 | Easy
+}
+\end{minipage}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{center}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.90cm,5.10cm) {8};
+  \node[font=\large] at (1.50cm,5.10cm) {6};
+  \node[font=\large] at (2.70cm,5.10cm) {3};
+  \node[font=\large] at (4.50cm,5.10cm) {9};
+  \node[font=\large] at (5.10cm,4.50cm) {7};
+  \node[font=\large] at (0.30cm,3.90cm) {4};
+  \node[font=\large] at (0.90cm,3.90cm) {2};
+  \node[font=\large] at (3.90cm,3.90cm) {1};
+  \node[font=\large] at (4.50cm,3.90cm) {3};
+  \node[font=\large] at (2.70cm,3.30cm) {5};
+  \node[font=\large] at (4.50cm,3.30cm) {1};
+  \node[font=\large] at (5.10cm,3.30cm) {3};
+  \node[font=\large] at (2.10cm,2.70cm) {3};
+  \node[font=\large] at (2.70cm,2.70cm) {2};
+  \node[font=\large] at (3.30cm,2.70cm) {6};
+  \node[font=\large] at (3.90cm,2.70cm) {8};
+  \node[font=\large] at (1.50cm,2.10cm) {5};
+  \node[font=\large] at (2.10cm,2.10cm) {8};
+  \node[font=\large] at (5.10cm,2.10cm) {2};
+  \node[font=\large] at (0.90cm,1.50cm) {3};
+  \node[font=\large] at (1.50cm,1.50cm) {8};
+  \node[font=\large] at (2.10cm,1.50cm) {1};
+  \node[font=\large] at (2.70cm,1.50cm) {7};
+  \node[font=\large] at (5.10cm,1.50cm) {6};
+  \node[font=\large] at (0.90cm,0.90cm) {4};
+  \node[font=\large] at (1.50cm,0.90cm) {1};
+  \node[font=\large] at (0.30cm,0.30cm) {9};
+  \node[font=\large] at (2.10cm,0.30cm) {6};
+  \node[font=\large] at (2.70cm,0.30cm) {8};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#63 (Seed: 1705816313) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[line width=0.3pt, gray!60] (0,0) grid[step=0.60cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) grid[step=1.80cm] (5.40cm,5.40cm);
+  \draw[line width=1.2pt, black] (0,0) rectangle (5.40cm,5.40cm);
+  \node[font=\large] at (0.30cm,5.10cm) {7};
+  \node[font=\large] at (4.50cm,5.10cm) {5};
+  \node[font=\large] at (2.10cm,4.50cm) {3};
+  \node[font=\large] at (4.50cm,4.50cm) {2};
+  \node[font=\large] at (1.50cm,3.90cm) {5};
+  \node[font=\large] at (2.10cm,3.90cm) {6};
+  \node[font=\large] at (5.10cm,3.90cm) {8};
+  \node[font=\large] at (1.50cm,3.30cm) {8};
+  \node[font=\large] at (2.70cm,3.30cm) {6};
+  \node[font=\large] at (3.90cm,3.30cm) {7};
+  \node[font=\large] at (5.10cm,3.30cm) {1};
+  \node[font=\large] at (0.90cm,2.70cm) {7};
+  \node[font=\large] at (2.70cm,2.70cm) {5};
+  \node[font=\large] at (4.50cm,2.70cm) {4};
+  \node[font=\large] at (1.50cm,2.10cm) {2};
+  \node[font=\large] at (2.10cm,2.10cm) {7};
+  \node[font=\large] at (2.70cm,2.10cm) {4};
+  \node[font=\large] at (5.10cm,2.10cm) {3};
+  \node[font=\large] at (0.30cm,1.50cm) {4};
+  \node[font=\large] at (0.90cm,1.50cm) {8};
+  \node[font=\large] at (1.50cm,1.50cm) {3};
+  \node[font=\large] at (4.50cm,1.50cm) {1};
+  \node[font=\large] at (3.90cm,0.90cm) {6};
+  \node[font=\large] at (5.10cm,0.90cm) {4};
+  \node[font=\large] at (3.30cm,0.30cm) {1};
+  \node[font=\large] at (3.90cm,0.30cm) {3};
+\end{tikzpicture}
+\par\vspace{0.1cm}
+{\tiny
+\#64 (Seed: 1705816314) | 2025-12-04 20:02 | Medium
+}
+\end{minipage}
+\end{center}
+\end{document}
