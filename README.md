@@ -1,39 +1,55 @@
-# SudokuPrintGen
+# 🧩 SudokuPrintGen
 
-Enterprise-grade LaTeX Sudoku generator with high-performance pure C# solver, supporting multiple formats, board sizes, difficulty levels, and variants.
+**Enterprise-grade LaTeX Sudoku Generator** - Beautiful, press-ready PDFs with a blazing-fast SIMD-optimized solver.
 
-## Features
+Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-quality output suitable for books, magazines, and print media.
 
-- **Pure C# Implementation**: High-performance DPLL solver with SIMD-optimized constraint propagation using bit-vector operations
-- **Multiple Board Sizes**: 4x4, 6x6, 9x9 (default), 12x12, 16x16
-- **Difficulty Levels**: Easy, Medium, Hard, Expert, Evil
-- **Variants**: Classic, Diagonal, Color-constrained, Kikagaku
-- **Output Formats**: LaTeX (.tex), Plain Text (.txt), JSON, PDF
-- **LaTeX Features**: 
-  - Support for pdflatex and xelatex engines
-  - Custom fonts via fontspec (xetex)
-  - Solving sheets (empty grids for working)
-  - Metadata (seed, puzzle number, date/time, solver algorithm)
-- **Reproducible Generation**: Seed-based puzzle generation (random seed shown if not specified)
-- **Press-Ready PDFs**: Professional LaTeX output with embedded fonts and vectors
-- **Configuration Files**: JSON-based configuration for batch operations
-- **Puzzle Validation**: Automatic validation of generated puzzles
-- **Error Handling**: Robust error handling with max retry limits
-- **Comprehensive Testing**: 32+ unit and integration tests
-- **SIMD Optimizations**: Hardware-accelerated constraint propagation using AVX2/SSE intrinsics
-- **Difficulty Rating**: Advanced difficulty analysis based on solving techniques
-- **Symmetry Detection**: Automatic detection of rotational, reflectional, and diagonal symmetry
-- **Multiple Puzzles Per Page**: Generate 1, 2, 4, 6, or 9 puzzles per LaTeX page
+---
 
-## Quick Start
+## ✨ Key Features
+
+### 🚀 High-Performance Puzzle Generation
+- **Pure C# SIMD-optimized DPLL solver** using `System.Runtime.Intrinsics` (AVX2/SSE)
+- **Multiple difficulty levels**: Easy, Medium, Hard, Expert, Evil
+- **Puzzle variants**: Classic, Diagonal, Color-Constrained, Kikagaku
+- **Configurable board sizes**: 4×4, 6×6, 9×9, 12×12, 16×16
+- **Reproducible generation** with seed support
+- **Difficulty rating algorithm** based on solving techniques
+- **Symmetry detection** (rotational, horizontal, vertical, diagonal)
+
+### 📄 Multiple Output Formats
+- **LaTeX (.tex)** - Full source for customization
+- **PDF** - Beautiful press-ready output via XeLaTeX
+- **TXT** - Simple 81-character puzzle strings
+- **JSON** - Structured data with full metadata
+
+### 🎨 Beautiful PDF Generation
+- **TikZ graphics** for precise, vector-based grids
+- **Perfectly square cells** with consistent line weights
+- **Thin gray lines** (0.3pt) for cell borders
+- **Thick black lines** (1.2pt) for 3×3 box borders
+- **Bundled Futura Bold BT font** (auto-copied during build)
+- **Custom font support** (TTF files or system fonts)
+- **Multi-puzzle layouts**: 8 puzzles per page (2 columns × 4 rows)
+- **Optimized for Letter size** (8.5" × 11") paper
+
+### 📋 Multi-Puzzle Features
+- Batch generation with **mixed difficulties**
+- **Automatic page balancing**
+- Individual puzzle footers (number, seed, date, difficulty)
+- Combined LaTeX/PDF output with timestamp naming
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- .NET 8.0 SDK
-- LaTeX distribution (optional, for PDF generation):
-  - Windows: MikTeX
-  - Linux: TeX Live
-  - macOS: MacTeX
+- **.NET 8.0 SDK**
+- **LaTeX distribution** (for PDF generation):
+  - Windows: [MikTeX](https://miktex.org/)
+  - Linux: TeX Live (`sudo apt install texlive-xetex`)
+  - macOS: [MacTeX](https://www.tug.org/mactex/)
 
 ### Build
 
@@ -47,106 +63,144 @@ Enterprise-grade LaTeX Sudoku generator with high-performance pure C# solver, su
 ./build/build.sh
 ```
 
-### Usage
-
-Generate a medium difficulty puzzle:
+**Or simply:**
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Medium
+dotnet build
 ```
 
-Generate with a specific seed:
+---
+
+## 📖 Usage Examples
+
+### Generate 8 medium puzzles as PDF
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --seed 42
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 8 -d Medium -f pdf
 ```
 
-Generate with solving sheet and solution:
+### Mixed difficulties with custom seed
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Expert --solving-sheet --solution
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 12 -d Easy,Medium,Hard --seed 12345
 ```
 
-## Command-Line Options
+### Use system font instead of bundled
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 4 --system-font Arial -f pdf
+```
+
+### Generate all formats
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 1 -d Expert -f all
+```
+
+### Generate with solving sheet and solution
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --solving-sheet --solution
+```
+
+### Use configuration file
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate --config config.example.json
+```
+
+---
+
+## ⚙️ Command-Line Options
 
 ```
 sudoku-printgen generate [options]
 
 Options:
-  --size, -s <int>          Board size (4, 6, 9, 12, 16) [default: 9]
+  --size, -s <int>           Board size (4, 6, 9, 12, 16) [default: 9]
   --difficulty, -d <level>   Easy|Medium|Hard|Expert|Evil [default: Medium]
+                             (comma-separated for mixed: Easy,Medium,Hard)
   --variant, -v <type>       Classic|Diagonal|ColorConstrained|Kikagaku [default: Classic]
-  --count, -c <int>          Number of puzzles to generate [default: 1]
+  --count, -n, -c <int>      Number of puzzles to generate [default: 1]
   --output, -o <path>        Output directory [default: .]
-  --format, -f <type>        Tex|Txt|Pdf|Json|All [default: All]
+  --format, -f <type>        tex|txt|pdf|json|all [default: all]
   --engine <engine>          pdflatex|xelatex [default: xelatex]
-  --font <name>              Font family name (xetex only)
+  --font <path>              Path to TTF font file (xelatex only)
+  --system-font <name>       Use installed system font by name (xelatex only)
+  --no-bundled-font          Don't use bundled Futura Bold BT font
   --title <text>             Puzzle title
   --author <text>            Author name
-  --seed <int>               Random seed for reproducibility (if not specified, random seed is generated and displayed)
+  --seed <int>               Random seed for reproducibility
   --solution                 Include solution in output
   --solving-sheet            Include solving sheet (empty grid)
-  --puzzles-per-page <int>   Number of puzzles per page (1, 2, 4, 6, or 9) [default: 1]
-  --config <path>            Configuration file (JSON) - see config.example.json
+  --config <path>            Configuration file (JSON)
 ```
 
-## Examples
+---
 
-Generate 5 easy puzzles with solutions (combined in one LaTeX document):
-```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Easy -c 5 --solution
+## 📁 Project Structure
+
+```
+SudokuPrintGen/
+├── src/
+│   ├── SudokuPrintGen.Core/     # Core library
+│   │   ├── Puzzle/              # Board, Generator, DifficultyRater
+│   │   ├── Solver/              # DPLL solver with SIMD optimizations
+│   │   ├── LaTeX/               # TikZ-based grid generation
+│   │   └── Output/              # Multi-format writers, PDF compiler
+│   └── SudokuPrintGen.CLI/      # Command-line interface
+├── tests/
+│   └── SudokuPrintGen.Tests/    # 40 unit tests
+├── fonts/                        # Bundled Futura fonts
+├── templates/latex/              # LaTeX templates
+├── build/                        # Build scripts (PowerShell & Bash)
+└── docs/                         # Documentation
 ```
 
-This creates one LaTeX file with 5 puzzles (4 on first page, 1 on second page), plus individual TXT and JSON files for each puzzle.
+---
 
-Generate a hard puzzle with custom font:
-```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --font "Times New Roman" --engine xelatex
-```
+## 🛠️ Technical Architecture
 
-Generate JSON only:
-```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -f Json -d Medium
-```
+### Core Library Components
 
-Generate using configuration file:
-```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate --config config.example.json
-```
+| Component | Description |
+|-----------|-------------|
+| `Board.cs` | Sudoku board representation with clone/validation |
+| `Generator.cs` | Puzzle generation with SIMD-optimized solver |
+| `DpllSolver.cs` | Davis-Putnam-Logemann-Loveland algorithm |
+| `SimdConstraintPropagator.cs` | AVX2/SSE hardware-accelerated operations |
+| `DifficultyRater.cs` | Technique-based difficulty analysis |
+| `SymmetryDetector.cs` | Pattern detection algorithms |
+| `LaTeXGenerator.cs` | TikZ-based grid generation |
+| `PdfCompiler.cs` | XeLaTeX/pdfLaTeX compilation |
 
-## Output Files
+### Solver Performance
 
-Generated files include:
-- `sudoku_{difficulty}_{seed}.txt` - Plain text format (81-char string)
-- `sudoku_{difficulty}_{seed}.tex` - LaTeX source
-- `sudoku_{difficulty}_{seed}.pdf` - Compiled PDF (if LaTeX engine available)
-- `sudoku_{difficulty}_{seed}.json` - JSON with puzzle, solution, and metadata
-
-## Metadata
-
-All outputs include metadata:
-- **Seed**: Random seed used for generation (for reproducibility)
-- **Puzzle Number**: Sequential puzzle number
-- **Generated At**: UTC timestamp
-- **Solver Algorithm**: "DPLL" (Davis-Putnam-Logemann-Loveland)
-- **Difficulty**: Puzzle difficulty level
-- **Variant**: Puzzle variant type
-
-## Architecture
-
-- **Core Library** (`SudokuPrintGen.Core`): Puzzle engine, solver, generator, LaTeX output
-- **CLI Application** (`SudokuPrintGen.CLI`): Command-line interface
-- **Tests** (`SudokuPrintGen.Tests`): Unit tests
-
-## Solver Performance
-
-The solver uses:
-- **DPLL Algorithm**: Davis-Putnam-Logemann-Loveland with constraint propagation
-- **SIMD Optimizations**: 
-  - Hardware-accelerated operations using `System.Runtime.Intrinsics` (AVX2/SSE)
+The solver uses cutting-edge optimizations:
+- **DPLL Algorithm** with constraint propagation
+- **SIMD Intrinsics** via `System.Runtime.Intrinsics`:
   - Vectorized candidate initialization and elimination
-  - Bit-vector operations for efficient candidate tracking
-  - Automatic fallback to scalar operations when SIMD unavailable
-- **Pure C#**: No native dependencies, fully cross-platform
+  - Hardware `PopCount` for efficient bit counting
+  - Automatic fallback to scalar operations when unavailable
+- **Bit-vector operations** for efficient candidate tracking
+- **Pure C#** - No native dependencies, fully cross-platform
 
-## Advanced Features
+---
+
+## 📊 Output Files
+
+Generated files follow this naming convention:
+
+| Format | Filename | Description |
+|--------|----------|-------------|
+| TXT | `sudoku_{difficulty}_seed_{seed}.txt` | 81-character puzzle string |
+| JSON | `sudoku_{difficulty}_seed_{seed}.json` | Full metadata + puzzle/solution arrays |
+| LaTeX | `sudoku_combined_{timestamp}.tex` | TikZ source (multi-puzzle) |
+| PDF | `sudoku_combined_{timestamp}.pdf` | Press-ready output |
+
+### JSON Metadata Includes:
+- Seed, puzzle number, generation timestamp
+- Difficulty level and variant type
+- Solver algorithm ("DPLL")
+- Difficulty rating (clue count, techniques required)
+- Symmetry analysis (types detected, score)
+
+---
+
+## 🎯 Advanced Features
 
 ### Difficulty Rating
 Puzzles are automatically analyzed to determine:
@@ -161,28 +215,61 @@ The generator detects and reports:
 - Diagonal symmetry
 - Overall symmetry score
 
-### Multiple Puzzles Per Page
-When generating multiple puzzles (count > 1), they are automatically combined into one LaTeX document:
-- **Layout**: 2 puzzles side by side per row
-- **Max per page**: 4 puzzles (2 rows × 2 columns)
+### Multi-Puzzle Layouts
+When generating multiple puzzles:
+- **Layout**: 2 columns × 4 rows = 8 puzzles per page
 - **Paper size**: Letter (8.5" × 11")
+- **Individual footers**: Each puzzle shows its number, seed, date, difficulty
 - **Automatic pagination**: Additional puzzles continue on new pages
-- **Single document**: All puzzles in one `.tex` file (and one `.pdf` when compiled)
+- **Balanced distribution**: Puzzles distributed evenly across pages
 
-Example: Generating 6 puzzles creates 2 pages (4 on first page, 2 on second page) in one document.
+---
 
-## Testing
+## ✅ Testing
 
-Run all tests:
+Run all 40 tests:
 ```bash
 dotnet test
 ```
 
-## License
+Test coverage includes:
+- Board operations and validation
+- Solver correctness and uniqueness checking
+- Generator with various difficulties
+- Difficulty rating algorithms
+- Symmetry detection
+- PDF compilation
+- Difficulty distribution for mixed batches
 
-[Add your license here]
+---
 
-## Contributing
+## 🎯 Future Roadmap
 
-[Add contribution guidelines here]
+- [ ] Web API / REST interface
+- [ ] GUI application (WPF/Avalonia)
+- [ ] Additional puzzle variants
+- [ ] More export formats (SVG, PNG)
+- [ ] Batch processing CLI improvements
+- [ ] Puzzle book generation mode
 
+---
+
+## 📜 License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+Built with ❤️ for puzzle enthusiasts and publishers.
