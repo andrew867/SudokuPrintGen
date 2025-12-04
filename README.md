@@ -1,8 +1,49 @@
 # 🧩 SudokuPrintGen
 
+[![CI](https://github.com/andrew867/SudokuPrintGen/actions/workflows/ci.yml/badge.svg)](https://github.com/andrew867/SudokuPrintGen/actions/workflows/ci.yml)
+[![Release](https://github.com/andrew867/SudokuPrintGen/actions/workflows/release.yml/badge.svg)](https://github.com/andrew867/SudokuPrintGen/actions/workflows/release.yml)
+[![GitHub release](https://img.shields.io/github/v/release/andrew867/SudokuPrintGen)](https://github.com/andrew867/SudokuPrintGen/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Enterprise-grade LaTeX Sudoku Generator** - Beautiful, press-ready PDFs with a blazing-fast SIMD-optimized solver.
 
 Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-quality output suitable for books, magazines, and print media.
+
+---
+
+## 📥 Download
+
+Pre-built binaries are available for all major platforms. **No .NET installation required** - the application is fully self-contained.
+
+| Platform | Architecture | Download |
+|----------|--------------|----------|
+| Windows | x64 | [SudokuPrintGen-win-x64.zip](https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-win-x64.zip) |
+| Linux | x64 | [SudokuPrintGen-linux-x64.zip](https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-linux-x64.zip) |
+| macOS | Intel (x64) | [SudokuPrintGen-osx-x64.zip](https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-osx-x64.zip) |
+| macOS | Apple Silicon (ARM64) | [SudokuPrintGen-osx-arm64.zip](https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-osx-arm64.zip) |
+
+### Quick Install
+
+**Windows:**
+```powershell
+# Download and extract
+Invoke-WebRequest -Uri "https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-win-x64.zip" -OutFile "SudokuPrintGen.zip"
+Expand-Archive -Path "SudokuPrintGen.zip" -DestinationPath "."
+
+# Run
+.\SudokuPrintGen-win-x64\SudokuPrintGen.CLI.exe --version
+```
+
+**Linux/macOS:**
+```bash
+# Download and extract (Linux example)
+curl -LO https://github.com/andrew867/SudokuPrintGen/releases/latest/download/SudokuPrintGen-linux-x64.zip
+unzip SudokuPrintGen-linux-x64.zip
+
+# Make executable and run
+chmod +x SudokuPrintGen-linux-x64/SudokuPrintGen.CLI
+./SudokuPrintGen-linux-x64/SudokuPrintGen.CLI --version
+```
 
 ---
 
@@ -45,13 +86,29 @@ Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-qual
 
 ### Prerequisites
 
-- **.NET 8.0 SDK**
-- **LaTeX distribution** (for PDF generation):
+For **PDF generation only** (not required for other formats):
+- **LaTeX distribution**:
   - Windows: [MikTeX](https://miktex.org/)
   - Linux: TeX Live (`sudo apt install texlive-xetex`)
   - macOS: [MacTeX](https://www.tug.org/mactex/)
 
-### Build
+### Using Pre-built Binaries
+
+```bash
+# Generate 8 medium puzzles as PDF
+./SudokuPrintGen.CLI generate -c 8 -d Medium -f pdf
+
+# Show version
+./SudokuPrintGen.CLI --version
+
+# Show help
+./SudokuPrintGen.CLI
+```
+
+### Building from Source
+
+**Prerequisites for building:**
+- **.NET 8.0 SDK**
 
 **Windows:**
 ```powershell
@@ -68,38 +125,79 @@ Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-qual
 dotnet build
 ```
 
+#### Build Script Options
+
+The build scripts support additional options for creating release builds:
+
+**Windows (PowerShell):**
+```powershell
+# Standard build
+.\build\build.ps1
+
+# Release build
+.\build\build.ps1 -Release
+
+# Skip tests
+.\build\build.ps1 -SkipTests
+
+# Create self-contained publish
+.\build\build.ps1 -Publish -Runtime win-x64
+```
+
+**Linux/macOS (Bash):**
+```bash
+# Standard build
+./build/build.sh
+
+# Release build
+./build/build.sh --release
+
+# Skip tests
+./build/build.sh --skip-tests
+
+# Create self-contained publish
+./build/build.sh --publish --runtime linux-x64
+```
+
+**Available runtime identifiers:** `win-x64`, `linux-x64`, `osx-x64`, `osx-arm64`
+
 ---
 
 ## 📖 Usage Examples
 
 ### Generate 8 medium puzzles as PDF
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 8 -d Medium -f pdf
+./SudokuPrintGen.CLI generate -c 8 -d Medium -f pdf
 ```
 
 ### Mixed difficulties with custom seed
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 12 -d Easy,Medium,Hard --seed 12345
+./SudokuPrintGen.CLI generate -c 12 -d Easy,Medium,Hard --seed 12345
 ```
 
 ### Use system font instead of bundled
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 4 --system-font Arial -f pdf
+./SudokuPrintGen.CLI generate -c 4 --system-font Arial -f pdf
 ```
 
 ### Generate all formats
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -n 1 -d Expert -f all
+./SudokuPrintGen.CLI generate -c 1 -d Expert -f all
 ```
 
 ### Generate with solving sheet and solution
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --solving-sheet --solution
+./SudokuPrintGen.CLI generate -d Hard --solving-sheet --solution
 ```
 
 ### Use configuration file
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate --config config.example.json
+./SudokuPrintGen.CLI generate --config config.example.json
+```
+
+### Using dotnet run (from source)
+```bash
+dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -c 8 -d Medium -f pdf
 ```
 
 ---
@@ -126,12 +224,16 @@ Options:
   --seed <int>               Random seed for reproducibility
   --solution                 Include solution in output
   --solving-sheet            Include solving sheet (empty grid)
+  --puzzles-per-page <int>   Puzzles per page: 6 (larger, 2x3) or 8 (2x4) [default: 6]
   --config <path>            Configuration file (JSON)
 
 Difficulty Targeting Options:
   --refine-difficulty        Use iterative refinement for accurate difficulty targeting
   --show-statistics          Display generation statistics after completion
   --verbose                  Show detailed progress during generation
+
+Other Commands:
+  --version, -V              Show version information
 ```
 
 ---
@@ -140,8 +242,13 @@ Difficulty Targeting Options:
 
 ```
 SudokuPrintGen/
+├── .github/
+│   └── workflows/               # CI/CD pipelines
+│       ├── ci.yml               # Build & test on push/PR
+│       └── release.yml          # Multi-platform releases
 ├── src/
 │   ├── SudokuPrintGen.Core/     # Core library
+│   │   ├── Configuration/       # Generator configuration
 │   │   ├── Puzzle/              # Board, Generator, DifficultyRater
 │   │   ├── Solver/              # DPLL solver with SIMD optimizations
 │   │   ├── LaTeX/               # TikZ-based grid generation
@@ -149,10 +256,10 @@ SudokuPrintGen/
 │   └── SudokuPrintGen.CLI/      # Command-line interface
 ├── tests/
 │   └── SudokuPrintGen.Tests/    # 143 unit tests
-├── fonts/                        # Bundled Futura fonts
-├── templates/latex/              # LaTeX templates
-├── build/                        # Build scripts (PowerShell & Bash)
-└── docs/                         # Documentation
+├── fonts/                       # Bundled Futura fonts
+├── templates/latex/             # LaTeX templates
+├── build/                       # Build scripts (PowerShell & Bash)
+└── docs/                        # Documentation
 ```
 
 ---
@@ -228,7 +335,7 @@ SudokuPrintGen uses a research-backed approach to difficulty targeting based on 
 #### Iterative Refinement
 Enable with `--refine-difficulty` for accurate targeting:
 ```bash
-dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Hard --refine-difficulty
+./SudokuPrintGen.CLI generate -d Hard --refine-difficulty
 ```
 
 The system:
@@ -312,6 +419,33 @@ Test coverage includes:
 - Difficulty distribution for mixed batches
 - Technique detection (all 8 techniques)
 - Technique scoring integration
+
+---
+
+## 🔄 CI/CD
+
+This project uses GitHub Actions for continuous integration and automated releases:
+
+- **CI Pipeline** (`ci.yml`): Runs on every push and PR to `main`
+  - Builds and tests on Ubuntu, Windows, and macOS
+  - Ensures cross-platform compatibility
+
+- **Release Pipeline** (`release.yml`): Triggered by version tags (`v*`)
+  - Builds self-contained executables for all platforms
+  - Creates GitHub Release with downloadable archives
+  - Generates release notes automatically
+
+### Creating a Release
+
+```bash
+# Tag the release
+git tag v1.0.0
+
+# Push the tag
+git push origin v1.0.0
+```
+
+GitHub Actions will automatically build and publish the release.
 
 ---
 
