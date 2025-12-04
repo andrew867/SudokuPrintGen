@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8502447B-13EB-481D-B0CB-667A47E9E463}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SudokuPrintGen.Core", "SudokuPrintGen.Core", "{F53FB87D-FA0D-4D2A-BF1F-7B45A00ED593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuPrintGen.Core", "src\SudokuPrintGen.Core\SudokuPrintGen.Core\SudokuPrintGen.Core.csproj", "{102F040D-4A27-49BD-B66C-28E867857BA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SudokuPrintGen.CLI", "SudokuPrintGen.CLI", "{51B7F380-F7D5-4717-A9C8-A148E76D71A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuPrintGen.CLI", "src\SudokuPrintGen.CLI\SudokuPrintGen.CLI\SudokuPrintGen.CLI.csproj", "{66C6406A-60C5-4339-9D6B-38C410175D41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B406E361-EF00-428C-BAA1-66F159D68A2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SudokuPrintGen.Tests", "SudokuPrintGen.Tests", "{FBDED009-2F3A-44AB-AF93-F11B322141B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuPrintGen.Tests", "tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests\SudokuPrintGen.Tests.csproj", "{C6EB233D-B76F-4D22-AE19-9C96605EB895}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{102F040D-4A27-49BD-B66C-28E867857BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102F040D-4A27-49BD-B66C-28E867857BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102F040D-4A27-49BD-B66C-28E867857BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102F040D-4A27-49BD-B66C-28E867857BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C6406A-60C5-4339-9D6B-38C410175D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C6406A-60C5-4339-9D6B-38C410175D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C6406A-60C5-4339-9D6B-38C410175D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C6406A-60C5-4339-9D6B-38C410175D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EB233D-B76F-4D22-AE19-9C96605EB895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EB233D-B76F-4D22-AE19-9C96605EB895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EB233D-B76F-4D22-AE19-9C96605EB895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EB233D-B76F-4D22-AE19-9C96605EB895}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F53FB87D-FA0D-4D2A-BF1F-7B45A00ED593} = {8502447B-13EB-481D-B0CB-667A47E9E463}
+		{102F040D-4A27-49BD-B66C-28E867857BA3} = {F53FB87D-FA0D-4D2A-BF1F-7B45A00ED593}
+		{51B7F380-F7D5-4717-A9C8-A148E76D71A4} = {8502447B-13EB-481D-B0CB-667A47E9E463}
+		{66C6406A-60C5-4339-9D6B-38C410175D41} = {51B7F380-F7D5-4717-A9C8-A148E76D71A4}
+		{FBDED009-2F3A-44AB-AF93-F11B322141B4} = {B406E361-EF00-428C-BAA1-66F159D68A2B}
+		{C6EB233D-B76F-4D22-AE19-9C96605EB895} = {FBDED009-2F3A-44AB-AF93-F11B322141B4}
+	EndGlobalSection
+EndGlobal

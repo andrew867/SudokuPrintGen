@@ -1,0 +1,16 @@
+{
+  "size": 9,
+  "difficulty": "Medium",
+  "variant": "Classic",
+  "count": 5,
+  "output": "./output",
+  "format": "All",
+  "engine": "xelatex",
+  "font": "Times New Roman",
+  "title": "Daily Sudoku Puzzles",
+  "author": "SudokuPrintGen",
+  "seed": null,
+  "includeSolution": false,
+  "includeSolvingSheet": true
+}
+

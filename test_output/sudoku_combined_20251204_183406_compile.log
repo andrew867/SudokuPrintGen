@@ -1,0 +1,23 @@
+Exit Code: 1
+
+STDOUT:
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+! Undefined control sequence.
+<*> test_output\sudoku
+                      _combined_20251204_183406.tex
+! I can't find file `test_output_combined_20251204_183406.tex'.
+<*> ..._output\sudoku_combined_20251204_183406.tex
+                                                  
+(Press Enter to retry, or Control-C to exit)
+Please type another input file name
+! Emergency stop.
+<*> ..._output\sudoku_combined_20251204_183406.tex
+                                                  
+No pages of output.
+Transcript written on D:\vscode\Sudoku\SudokuPrintGen\test_output\test_output\t
+exput.log.
+
+
+STDERR:
