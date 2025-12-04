@@ -3,6 +3,23 @@ using SudokuPrintGen.Core.Output;
 using SudokuPrintGen.Core.LaTeX;
 using SudokuPrintGen.Core.Configuration;
 using System.Text.Json;
+using System.Reflection;
+
+// Handle --version flag
+if (args.Length > 0 && (args[0] == "--version" || args[0] == "-V" || args[0] == "version"))
+{
+    var assembly = Assembly.GetExecutingAssembly();
+    var version = assembly.GetName().Version;
+    var informationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? version?.ToString() ?? "unknown";
+    var product = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product ?? "SudokuPrintGen";
+    var description = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? "";
+    
+    Console.WriteLine($"{product} v{informationalVersion}");
+    Console.WriteLine(description);
+    Console.WriteLine();
+    Console.WriteLine("https://github.com/andrew867/SudokuPrintGen");
+    return 0;
+}
 
 if (args.Length == 0 || args[0] != "generate")
 {
@@ -31,6 +48,9 @@ if (args.Length == 0 || args[0] != "generate")
     Console.WriteLine("  --refine-difficulty       Use iterative refinement for accurate difficulty targeting");
     Console.WriteLine("  --show-statistics         Display generation statistics after completion");
     Console.WriteLine("  --verbose                 Show detailed progress during generation");
+    Console.WriteLine();
+    Console.WriteLine("Other Commands:");
+    Console.WriteLine("  --version, -V             Show version information");
     Console.WriteLine();
     Console.WriteLine("Examples:");
     Console.WriteLine("  sudoku-printgen generate -d Easy,Medium -c 8");

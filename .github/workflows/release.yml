@@ -1,0 +1,200 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  PROJECT_PATH: './SudokuPrintGen/src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/SudokuPrintGen.CLI.csproj'
+
+jobs:
+  build:
+    name: Build ${{ matrix.rid }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+            artifact_name: SudokuPrintGen-win-x64
+          - os: ubuntu-latest
+            rid: linux-x64
+            artifact_name: SudokuPrintGen-linux-x64
+          - os: macos-latest
+            rid: osx-x64
+            artifact_name: SudokuPrintGen-osx-x64
+          - os: macos-latest
+            rid: osx-arm64
+            artifact_name: SudokuPrintGen-osx-arm64
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore Dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+
+    - name: Build Application
+      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+
+    - name: Run Tests
+      run: dotnet test ./SudokuPrintGen --configuration Release --no-build --verbosity normal
+
+    - name: Publish Application
+      run: |
+        dotnet publish ${{ env.PROJECT_PATH }} \
+          --configuration Release \
+          --runtime ${{ matrix.rid }} \
+          --self-contained true \
+          -p:PublishSingleFile=true \
+          -p:EnableCompressionInSingleFile=true \
+          -p:IncludeNativeLibrariesForSelfExtract=true \
+          --output ./publish/${{ matrix.artifact_name }}
+      shell: bash
+
+    - name: Copy Bundled Assets (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        # Copy fonts folder if it exists
+        if [ -d "./SudokuPrintGen/fonts" ]; then
+          cp -r "./SudokuPrintGen/fonts" "./publish/${{ matrix.artifact_name }}/fonts"
+        fi
+        # Copy templates folder if it exists
+        if [ -d "./SudokuPrintGen/templates" ]; then
+          cp -r "./SudokuPrintGen/templates" "./publish/${{ matrix.artifact_name }}/templates"
+        fi
+        # Copy example config
+        if [ -f "./SudokuPrintGen/config.example.json" ]; then
+          cp "./SudokuPrintGen/config.example.json" "./publish/${{ matrix.artifact_name }}/"
+        fi
+      shell: bash
+
+    - name: Copy Bundled Assets (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        # Copy fonts folder if it exists
+        if (Test-Path "./SudokuPrintGen/fonts") {
+          Copy-Item -Path "./SudokuPrintGen/fonts" -Destination "./publish/${{ matrix.artifact_name }}/fonts" -Recurse
+        }
+        # Copy templates folder if it exists
+        if (Test-Path "./SudokuPrintGen/templates") {
+          Copy-Item -Path "./SudokuPrintGen/templates" -Destination "./publish/${{ matrix.artifact_name }}/templates" -Recurse
+        }
+        # Copy example config
+        if (Test-Path "./SudokuPrintGen/config.example.json") {
+          Copy-Item -Path "./SudokuPrintGen/config.example.json" -Destination "./publish/${{ matrix.artifact_name }}/"
+        }
+      shell: pwsh
+
+    - name: Create Archive (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        cd ./publish
+        zip -r ../${{ matrix.artifact_name }}.zip ${{ matrix.artifact_name }}
+      shell: bash
+
+    - name: Create Archive (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd ./publish
+        Compress-Archive -Path ${{ matrix.artifact_name }} -DestinationPath ../${{ matrix.artifact_name }}.zip
+      shell: pwsh
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: ${{ matrix.artifact_name }}.zip
+        retention-days: 1
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: ./artifacts
+
+    - name: Display Downloaded Files
+      run: ls -la ./artifacts/*
+
+    - name: Extract Version from Tag
+      id: version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Generate Release Notes
+      id: release_notes
+      run: |
+        VERSION=${{ steps.version.outputs.VERSION }}
+        cat << EOF > release_notes.md
+        ## SudokuPrintGen $VERSION
+
+        Enterprise-grade LaTeX Sudoku Generator - Beautiful, press-ready PDFs with a blazing-fast SIMD-optimized solver.
+
+        ### Downloads
+
+        | Platform | Architecture | File |
+        |----------|--------------|------|
+        | Windows | x64 | \`SudokuPrintGen-win-x64.zip\` |
+        | Linux | x64 | \`SudokuPrintGen-linux-x64.zip\` |
+        | macOS | x64 (Intel) | \`SudokuPrintGen-osx-x64.zip\` |
+        | macOS | ARM64 (Apple Silicon) | \`SudokuPrintGen-osx-arm64.zip\` |
+
+        ### Installation
+
+        1. Download the appropriate archive for your platform
+        2. Extract the archive
+        3. Run the executable:
+           - Windows: \`SudokuPrintGen.CLI.exe\`
+           - Linux/macOS: \`./SudokuPrintGen.CLI\`
+
+        ### Requirements
+
+        - **For PDF generation**: LaTeX distribution (MikTeX on Windows, TeX Live on Linux, MacTeX on macOS)
+        - The application is self-contained and does not require .NET to be installed
+
+        ### Quick Start
+
+        \`\`\`bash
+        # Generate 8 medium puzzles as PDF
+        ./SudokuPrintGen.CLI generate -c 8 -d Medium -f pdf
+
+        # Show version
+        ./SudokuPrintGen.CLI --version
+        \`\`\`
+
+        See the [README](https://github.com/andrew867/SudokuPrintGen#readme) for full documentation.
+        EOF
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ steps.version.outputs.VERSION }}
+        name: SudokuPrintGen ${{ steps.version.outputs.VERSION }}
+        body_path: release_notes.md
+        draft: false
+        prerelease: ${{ contains(steps.version.outputs.VERSION, '-') }}
+        files: |
+          ./artifacts/SudokuPrintGen-win-x64/SudokuPrintGen-win-x64.zip
+          ./artifacts/SudokuPrintGen-linux-x64/SudokuPrintGen-linux-x64.zip
+          ./artifacts/SudokuPrintGen-osx-x64/SudokuPrintGen-osx-x64.zip
+          ./artifacts/SudokuPrintGen-osx-arm64/SudokuPrintGen-osx-arm64.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

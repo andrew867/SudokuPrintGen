@@ -5,6 +5,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- Version Information -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    
+    <!-- Assembly Metadata -->
+    <AssemblyTitle>SudokuPrintGen.Core</AssemblyTitle>
+    <Product>SudokuPrintGen</Product>
+    <Description>Core library for SudokuPrintGen - SIMD-optimized Sudoku solver and LaTeX generator</Description>
+    <Authors>andrew867</Authors>
+    <Copyright>Copyright © 2024</Copyright>
+    <RepositoryUrl>https://github.com/andrew867/SudokuPrintGen</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>

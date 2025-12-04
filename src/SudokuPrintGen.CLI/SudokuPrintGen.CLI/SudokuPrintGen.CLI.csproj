@@ -1,5 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- Version Information -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    
+    <!-- Assembly Metadata -->
+    <AssemblyTitle>SudokuPrintGen</AssemblyTitle>
+    <Product>SudokuPrintGen</Product>
+    <Description>Enterprise-grade LaTeX Sudoku Generator - Beautiful, press-ready PDFs with a blazing-fast SIMD-optimized solver</Description>
+    <Authors>andrew867</Authors>
+    <Copyright>Copyright © 2025</Copyright>
+    <RepositoryUrl>https://github.com/andrew867/SudokuPrintGen</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    
+    <!-- Publishing Options -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\SudokuPrintGen.Core\SudokuPrintGen.Core\SudokuPrintGen.Core.csproj" />
   </ItemGroup>
@@ -7,13 +35,6 @@
   <ItemGroup>
     <PackageReference Include="System.CommandLine" Version="2.0.0" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
 
   <!-- Copy bundled font to output directory -->
   <ItemGroup>

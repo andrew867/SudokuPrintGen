@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+      working-directory: ./SudokuPrintGen
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./SudokuPrintGen
+
+    - name: Run Tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      working-directory: ./SudokuPrintGen
+
+  # Build verification on all platforms
+  build-matrix:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+      working-directory: ./SudokuPrintGen
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./SudokuPrintGen
+
+    - name: Run Tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      working-directory: ./SudokuPrintGen
+

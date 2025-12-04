@@ -6,6 +6,9 @@ set -e
 
 SKIP_TESTS=false
 RELEASE=false
+PUBLISH=false
+RUNTIME=""
+OUTPUT_DIR="./publish"
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -17,6 +20,32 @@ while [[ $# -gt 0 ]]; do
         --release)
             RELEASE=true
             shift
+            ;;
+        --publish)
+            PUBLISH=true
+            shift
+            ;;
+        --runtime)
+            RUNTIME="$2"
+            shift 2
+            ;;
+        --output)
+            OUTPUT_DIR="$2"
+            shift 2
+            ;;
+        --help|-h)
+            echo "Usage: build.sh [options]"
+            echo ""
+            echo "Options:"
+            echo "  --skip-tests    Skip running tests"
+            echo "  --release       Build in Release configuration"
+            echo "  --publish       Create self-contained publish"
+            echo "  --runtime RID   Target runtime (e.g., linux-x64, osx-x64, osx-arm64)"
+            echo "  --output DIR    Output directory for publish (default: ./publish)"
+            echo "  --help, -h      Show this help message"
+            echo ""
+            echo "Available runtimes: win-x64, linux-x64, osx-x64, osx-arm64"
+            exit 0
             ;;
         *)
             echo "Unknown option: $1"
@@ -79,7 +108,7 @@ echo ""
 
 # Build solution
 CONFIG="Debug"
-if [ "$RELEASE" = true ]; then
+if [ "$RELEASE" = true ] || [ "$PUBLISH" = true ]; then
     CONFIG="Release"
 fi
 
@@ -104,8 +133,92 @@ if [ "$SKIP_TESTS" = false ]; then
     echo ""
 fi
 
+# Publish if requested
+if [ "$PUBLISH" = true ]; then
+    echo "Publishing application..."
+    
+    # Determine runtime identifier
+    RID="$RUNTIME"
+    if [ -z "$RID" ]; then
+        # Auto-detect based on current OS
+        case "$(uname -s)" in
+            Linux*)
+                RID="linux-x64"
+                ;;
+            Darwin*)
+                # Check for ARM vs Intel
+                if [ "$(uname -m)" = "arm64" ]; then
+                    RID="osx-arm64"
+                else
+                    RID="osx-x64"
+                fi
+                ;;
+            *)
+                RID="linux-x64"
+                ;;
+        esac
+    fi
+    
+    echo "Target runtime: $RID"
+    
+    PUBLISH_DIR="$OUTPUT_DIR/SudokuPrintGen-$RID"
+    
+    dotnet publish src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/SudokuPrintGen.CLI.csproj \
+        --configuration Release \
+        --runtime "$RID" \
+        --self-contained true \
+        -p:PublishSingleFile=true \
+        -p:EnableCompressionInSingleFile=true \
+        -p:IncludeNativeLibrariesForSelfExtract=true \
+        --output "$PUBLISH_DIR"
+    
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Publish failed!"
+        exit 1
+    fi
+    
+    # Copy additional assets
+    if [ -d "fonts" ]; then
+        echo "Copying fonts..."
+        cp -r fonts "$PUBLISH_DIR/"
+    fi
+    
+    if [ -d "templates" ]; then
+        echo "Copying templates..."
+        cp -r templates "$PUBLISH_DIR/"
+    fi
+    
+    if [ -f "config.example.json" ]; then
+        echo "Copying config example..."
+        cp config.example.json "$PUBLISH_DIR/"
+    fi
+    
+    echo "Published to: $PUBLISH_DIR"
+    echo ""
+    
+    # Create zip archive
+    ZIP_PATH="$OUTPUT_DIR/SudokuPrintGen-$RID.zip"
+    if [ -f "$ZIP_PATH" ]; then
+        rm "$ZIP_PATH"
+    fi
+    
+    echo "Creating archive: $ZIP_PATH"
+    cd "$OUTPUT_DIR"
+    zip -r "SudokuPrintGen-$RID.zip" "SudokuPrintGen-$RID"
+    cd - > /dev/null
+    echo "Archive created successfully"
+    echo ""
+fi
+
 echo "Build completed successfully!"
 echo ""
-echo "To run the CLI:"
-echo "  dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Medium"
 
+if [ "$PUBLISH" = false ]; then
+    echo "To run the CLI:"
+    echo "  dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Medium"
+    echo ""
+    echo "To create a release build:"
+    echo "  ./build/build.sh --publish --runtime linux-x64"
+    echo ""
+    echo "Available runtimes: win-x64, linux-x64, osx-x64, osx-arm64"
+fi

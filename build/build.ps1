@@ -3,7 +3,10 @@
 
 param(
     [switch]$SkipTests,
-    [switch]$Release
+    [switch]$Release,
+    [switch]$Publish,
+    [string]$Runtime = "",
+    [string]$OutputDir = "./publish"
 )
 
 $ErrorActionPreference = "Stop"
@@ -61,7 +64,7 @@ Write-Host "Packages restored successfully" -ForegroundColor Green
 Write-Host ""
 
 # Build solution
-$config = if ($Release) { "Release" } else { "Debug" }
+$config = if ($Release -or $Publish) { "Release" } else { "Debug" }
 Write-Host "Building solution (Configuration: $config)..." -ForegroundColor Yellow
 dotnet build --configuration $config
 if ($LASTEXITCODE -ne 0) {
@@ -83,8 +86,86 @@ if (-not $SkipTests) {
     Write-Host ""
 }
 
+# Publish if requested
+if ($Publish) {
+    Write-Host "Publishing application..." -ForegroundColor Yellow
+    
+    # Determine runtime identifier
+    $rid = $Runtime
+    if ([string]::IsNullOrEmpty($rid)) {
+        # Auto-detect based on current OS
+        if ($IsWindows -or $env:OS -eq "Windows_NT") {
+            $rid = "win-x64"
+        } elseif ($IsMacOS) {
+            $rid = "osx-x64"
+        } else {
+            $rid = "linux-x64"
+        }
+    }
+    
+    Write-Host "Target runtime: $rid" -ForegroundColor Cyan
+    
+    $publishArgs = @(
+        "publish",
+        "src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/SudokuPrintGen.CLI.csproj",
+        "--configuration", "Release",
+        "--runtime", $rid,
+        "--self-contained", "true",
+        "-p:PublishSingleFile=true",
+        "-p:EnableCompressionInSingleFile=true",
+        "-p:IncludeNativeLibrariesForSelfExtract=true",
+        "--output", "$OutputDir/SudokuPrintGen-$rid"
+    )
+    
+    & dotnet @publishArgs
+    
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ERROR: Publish failed!" -ForegroundColor Red
+        exit 1
+    }
+    
+    # Copy additional assets
+    $publishDir = "$OutputDir/SudokuPrintGen-$rid"
+    
+    if (Test-Path "fonts") {
+        Write-Host "Copying fonts..." -ForegroundColor Yellow
+        Copy-Item -Path "fonts" -Destination "$publishDir/fonts" -Recurse -Force
+    }
+    
+    if (Test-Path "templates") {
+        Write-Host "Copying templates..." -ForegroundColor Yellow
+        Copy-Item -Path "templates" -Destination "$publishDir/templates" -Recurse -Force
+    }
+    
+    if (Test-Path "config.example.json") {
+        Write-Host "Copying config example..." -ForegroundColor Yellow
+        Copy-Item -Path "config.example.json" -Destination "$publishDir/" -Force
+    }
+    
+    Write-Host "Published to: $publishDir" -ForegroundColor Green
+    Write-Host ""
+    
+    # Create zip archive
+    $zipPath = "$OutputDir/SudokuPrintGen-$rid.zip"
+    if (Test-Path $zipPath) {
+        Remove-Item $zipPath -Force
+    }
+    
+    Write-Host "Creating archive: $zipPath" -ForegroundColor Yellow
+    Compress-Archive -Path "$publishDir" -DestinationPath $zipPath
+    Write-Host "Archive created successfully" -ForegroundColor Green
+    Write-Host ""
+}
+
 Write-Host "Build completed successfully!" -ForegroundColor Green
 Write-Host ""
-Write-Host "To run the CLI:" -ForegroundColor Cyan
-Write-Host "  dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Medium" -ForegroundColor White
 
+if (-not $Publish) {
+    Write-Host "To run the CLI:" -ForegroundColor Cyan
+    Write-Host "  dotnet run --project src/SudokuPrintGen.CLI/SudokuPrintGen.CLI -- generate -d Medium" -ForegroundColor White
+    Write-Host ""
+    Write-Host "To create a release build:" -ForegroundColor Cyan
+    Write-Host "  .\build\build.ps1 -Publish -Runtime win-x64" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Available runtimes: win-x64, linux-x64, osx-x64, osx-arm64" -ForegroundColor White
+}
