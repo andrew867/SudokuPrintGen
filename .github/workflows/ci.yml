@@ -28,15 +28,12 @@ jobs:
 
     - name: Restore Dependencies
       run: dotnet restore
-      working-directory: ./SudokuPrintGen
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: ./SudokuPrintGen
 
     - name: Run Tests
       run: dotnet test --configuration Release --no-build --verbosity normal
-      working-directory: ./SudokuPrintGen
 
   # Build verification on all platforms
   build-matrix:
@@ -58,13 +55,9 @@ jobs:
 
     - name: Restore Dependencies
       run: dotnet restore
-      working-directory: ./SudokuPrintGen
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: ./SudokuPrintGen
 
     - name: Run Tests
       run: dotnet test --configuration Release --no-build --verbosity normal
-      working-directory: ./SudokuPrintGen
-

@@ -7,7 +7,7 @@ on:
 
 env:
   DOTNET_VERSION: '8.0.x'
-  PROJECT_PATH: './SudokuPrintGen/src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/SudokuPrintGen.CLI.csproj'
+  PROJECT_PATH: './src/SudokuPrintGen.CLI/SudokuPrintGen.CLI/SudokuPrintGen.CLI.csproj'
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
     - name: Run Tests
-      run: dotnet test ./SudokuPrintGen --configuration Release --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal
 
     - name: Publish Application
       run: |
@@ -64,16 +64,16 @@ jobs:
       if: matrix.os != 'windows-latest'
       run: |
         # Copy fonts folder if it exists
-        if [ -d "./SudokuPrintGen/fonts" ]; then
-          cp -r "./SudokuPrintGen/fonts" "./publish/${{ matrix.artifact_name }}/fonts"
+        if [ -d "./fonts" ]; then
+          cp -r "./fonts" "./publish/${{ matrix.artifact_name }}/fonts"
         fi
         # Copy templates folder if it exists
-        if [ -d "./SudokuPrintGen/templates" ]; then
-          cp -r "./SudokuPrintGen/templates" "./publish/${{ matrix.artifact_name }}/templates"
+        if [ -d "./templates" ]; then
+          cp -r "./templates" "./publish/${{ matrix.artifact_name }}/templates"
         fi
         # Copy example config
-        if [ -f "./SudokuPrintGen/config.example.json" ]; then
-          cp "./SudokuPrintGen/config.example.json" "./publish/${{ matrix.artifact_name }}/"
+        if [ -f "./config.example.json" ]; then
+          cp "./config.example.json" "./publish/${{ matrix.artifact_name }}/"
         fi
       shell: bash
 
@@ -81,16 +81,16 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         # Copy fonts folder if it exists
-        if (Test-Path "./SudokuPrintGen/fonts") {
-          Copy-Item -Path "./SudokuPrintGen/fonts" -Destination "./publish/${{ matrix.artifact_name }}/fonts" -Recurse
+        if (Test-Path "./fonts") {
+          Copy-Item -Path "./fonts" -Destination "./publish/${{ matrix.artifact_name }}/fonts" -Recurse
         }
         # Copy templates folder if it exists
-        if (Test-Path "./SudokuPrintGen/templates") {
-          Copy-Item -Path "./SudokuPrintGen/templates" -Destination "./publish/${{ matrix.artifact_name }}/templates" -Recurse
+        if (Test-Path "./templates") {
+          Copy-Item -Path "./templates" -Destination "./publish/${{ matrix.artifact_name }}/templates" -Recurse
         }
         # Copy example config
-        if (Test-Path "./SudokuPrintGen/config.example.json") {
-          Copy-Item -Path "./SudokuPrintGen/config.example.json" -Destination "./publish/${{ matrix.artifact_name }}/"
+        if (Test-Path "./config.example.json") {
+          Copy-Item -Path "./config.example.json" -Destination "./publish/${{ matrix.artifact_name }}/"
         }
       shell: pwsh
 
@@ -197,4 +197,3 @@ jobs:
           ./artifacts/SudokuPrintGen-osx-arm64/SudokuPrintGen-osx-arm64.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
