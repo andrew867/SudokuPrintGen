@@ -9,6 +9,14 @@
 
 Built with .NET 8 C# and TikZ graphics, SudokuPrintGen produces publication-quality output suitable for books, magazines, and print media.
 
+<p align="center">
+  <img src="docs/sample/sudoku_combined_20251204_205536/sudoku_combined_20251204_205536-1.png" alt="Sample Sudoku Output" width="600">
+  <br>
+  <em>Example output - 8 puzzles per page with mixed difficulties</em>
+  <br>
+  <a href="docs/sample/sudoku_combined_20251204_205536.pdf">📄 View Full Sample PDF</a>
+</p>
+
 ---
 
 ## 📥 Download
