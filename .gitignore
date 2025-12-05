@@ -1,1 +1,37 @@
+# Build outputs
+**/bin/
+**/obj/
+**/publish/
+
+# Output directory
 output/
+
+# IDE and editor files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# NuGet
+*.nupkg
+packages/
+
+# Test results
+TestResults/
+*.trx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# LaTeX auxiliary files (keep .tex and .pdf)
+*.aux
+*.log
+*.synctex.gz
+*.fls
+*.fdb_latexmk
